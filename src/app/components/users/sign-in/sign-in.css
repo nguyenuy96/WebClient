@@ -1,0 +1,39 @@
+#content{
+    background: red;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    background:lightgray;
+}
+
+#titleContent{
+    text-align: center;
+    color: blue;
+    margin-top: 5%;
+}
+
+#formContent{
+    text-align: center;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 8%;
+}
+
+#matcard{
+    text-align: center;
+    background: aliceblue;
+}
+
+#h2{
+    color: blue;
+}
+
+#matform{
+    appearance: "legacy";
+    width: 70%;
+}
