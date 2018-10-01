@@ -1,0 +1,41 @@
+table{
+    width: 100%;
+    table-layout: fixed;
+}
+.position{
+    width: 5%
+}
+.phonenumber {
+    width: 10%;
+}
+
+.name{
+    width: 20%;
+}
+
+.gender {
+    width: 10%
+}
+
+.nationality {
+    width: 10%
+}
+
+.identificate {
+    width: 15%
+}
+
+.address {
+    width: 30%
+}
+
+th.mat-header-cell {
+    color: black;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+td.mat-cell {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+}

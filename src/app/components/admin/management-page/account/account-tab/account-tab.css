@@ -2,28 +2,31 @@ table{
     width: 100%;
     table-layout: fixed;
 }
-.select{
-    width: 5%
-}
-
 .position{
     width: 5%
 }
+.phonenumber {
+    width: 10%;
+}
 
 .name{
-    width: 50%;
+    width: 20%;
 }
 
-.type{
-    width: 10%;
+.gender {
+    width: 10%
 }
 
-.price{
-    width: 10%;
+.nationality {
+    width: 10%
 }
 
-.create{
-    width: 20%
+.identificate {
+    width: 15%
+}
+
+.address {
+    width: 30%
 }
 
 th.mat-header-cell {

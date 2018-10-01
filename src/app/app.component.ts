@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './components/admin/admin-page/admin-page.html',
-  styleUrls: ['./components/admin/admin-page/admin-page.css']
+  templateUrl: './components/store-view/store-view.html',
+  styleUrls: ['./components/store-view/store-view.css']
 })
 export class AppComponent {
   title = 'Babe Shop';

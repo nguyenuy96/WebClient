@@ -1,0 +1,28 @@
+mat-form-field {
+    font-size: 18px;
+    font-family: 'Times New Roman', Times, serif;
+    width: 80%
+}
+
+h2 {
+    font-size: 24px;
+    font-family: 'Times New Roman', Times, serif
+}
+
+.mat-label {
+    font-family: 'Times New Roman', Times, serif
+}
+mat-radio-button {
+    font-family: 'Times New Roman', Times, serif
+}
+::ng-deep  .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+    border-color: rgb(92, 91, 91);
+}
+
+::ng-deep  .mat-radio-button.mat-accent .mat-radio-inner-circle{
+    background-color: rgb(92, 91, 91);
+}
+mat-select,  mat-option {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+}

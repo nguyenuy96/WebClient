@@ -37,3 +37,11 @@
     appearance: "legacy";
     width: 70%;
 }
+
+mat-form-field {
+    font-family: 'Times New Roman', Times, serif
+}
+
+mat-label {
+    font-family:  'Times New Roman', Times, serif
+}

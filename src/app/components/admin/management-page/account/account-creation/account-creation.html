@@ -1,23 +1,41 @@
-<h2>Thêm tài khoản</h2>
-<div id="content">
-    <div id="formContent" class="container">
-        <mat-card id="matcard">
-            <h2>
-                <p>
-                    <mat-label>
-                        <b>Thông tin tài khoản</b>
-                    </mat-label>
-                </p>
-            </h2>
-            <p>
-                <mat-form-field style="width: 50%">
-                    <mat-label>Tài khoản *</mat-label>
-                    <input matInput>
-                </mat-form-field>
-            </p>
-            <p>
-                <button mat-raised-button color="primary">Xác nhận</button>
-            </p>
+<mat-horizontal-stepper linear #stepper>
+    <mat-step [editable]="false">
+        <ng-template matStepLabel>Đối tượng sử dụng</ng-template>
+        <mat-card style="width: 20%;">
+            <account-role></account-role>
+            <div>
+                <button mat-button matStepperNext>Next</button>
+            </div>
         </mat-card>
-    </div>
-</div>
+    </mat-step>
+    <mat-step [editable]="false">
+        <ng-template matStepLabel>Thông tin tài khoản</ng-template>
+        <mat-card style="width: 35%; margin: auto">
+            <h2 style="text-align: center">Thông tin tài khoản</h2>
+            <account-profile></account-profile>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </mat-card>
+    </mat-step>
+    <mat-step [editable]="false">
+        <ng-template matStepLabel>Thông tin cá nhân</ng-template>
+        <mat-card style="width: 35%; margin: auto">
+            <h2 style="text-align: center">Thông tin cá nhân</h2>
+            <customer-profile></customer-profile>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </mat-card>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        You are now done.
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>

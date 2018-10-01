@@ -1,0 +1,18 @@
+mat-form-field {
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+    width: 80%
+}
+
+mat-select,  mat-option {
+    font-family: 'Times New Roman', Times, serif
+}
+h2 {
+    font-size: 24px;
+    font-family: 'Times New Roman', Times, serif
+}
+
+mat-label {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+}

@@ -1,65 +1,64 @@
 import { Component, ViewChild } from "@angular/core";
 import { MatTableDataSource, MatPaginator, MatSort } from "@angular/material";
 import { SelectionModel } from "@angular/cdk/collections";
-import { PeriodicElement } from "../../product-page/manage-product/manage-product";
-export interface PeriodicElement {
-    name: string;
+export interface Customers {
     position: number;
-    weight: number;
-    symbol: string;
+    phonenumber: string;
+    name: string;
+    address: string;
 }
-const ELEMENT_DATA: PeriodicElement[] = [
-    { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-    { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-    { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-    { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-    { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-    { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-    { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-    { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-    { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-    { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-    { position: 11, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-    { position: 12, name: 'Helium', weight: 4.0026, symbol: 'He' },
-    { position: 13, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-    { position: 14, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-    { position: 15, name: 'Boron', weight: 10.811, symbol: 'B' },
-    { position: 16, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-    { position: 17, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-    { position: 18, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-    { position: 19, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-    { position: 20, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-    { position: 21, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-    { position: 22, name: 'Helium', weight: 4.0026, symbol: 'He' },
-    { position: 23, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-    { position: 24, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-    { position: 25, name: 'Boron', weight: 10.811, symbol: 'B' },
-    { position: 26, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-    { position: 27, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-    { position: 28, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-    { position: 29, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-    { position: 30, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-    { position: 31, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-    { position: 32, name: 'Helium', weight: 4.0026, symbol: 'He' },
-    { position: 33, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-    { position: 34, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-    { position: 35, name: 'Boron', weight: 10.811, symbol: 'B' },
-    { position: 36, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-    { position: 37, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-    { position: 38, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-    { position: 39, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-    { position: 40, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
+const ELEMENT_DATA: Customers[] = [
+    { position: 1, phonenumber: '0964474561', name: 'Nguyễn Hữu Úy', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 2, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 3, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 4, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 5, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 6, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 7, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 8, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 9, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 10, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 11, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 12, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 13, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 14, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 15, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 16, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 17, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 18, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 19, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 20, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 21, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 22, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 23, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 24, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 25, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 26, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 27, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 28, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 29, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 30, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 31, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 32, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 33, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 34, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 35, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 36, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 37, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 38, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 39, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
+    { position: 40, phonenumber: '0964474561', name: 'Hydrogen', address: 'Tân Hiệp, Kiên Giang' },
 ];
 @Component({
     selector: 'customer-page',
-    templateUrl: '../account-tab/account-tab.html',
-    styleUrls: ['../account-tab/account-tab.css']
+    templateUrl: './customer.html',
+    styleUrls: ['./customer.css']
 })
 
 export class CustomerPage {
-    displayedColumns: string[] = ['position', 'name', 'type', 'price', 'create'];
-    dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-    selection = new SelectionModel<PeriodicElement>(true, []);
+    displayedColumns: string[] = ['position', 'phonenumber', 'name', 'address'];
+    dataSource = new MatTableDataSource<Customers>(ELEMENT_DATA);
+    selection = new SelectionModel<Customers>(true, []);
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
