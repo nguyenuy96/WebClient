@@ -1,6 +1,33 @@
-<mat-form-field class="example-form-field">
-    <input matInput type="text" placeholder="Tìm kiếm sản phẩm" [(ngModel)]="value">
-    <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-        <mat-icon>close</mat-icon>
+<mat-toolbar style="width: 80%; margin: auto"><a [routerLink]="">My App</a>
+    <mat-form-field class="example-form-field">
+        <input matInput type="text" placeholder="Tìm kiếm sản phẩm" [(ngModel)]="value">
+        <div matSuffix *ngIf="value; else invalidvalue">
+            <button mat-button mat-icon-button aria-label="Clear" (click)="value=''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+        <ng-template #invalidvalue>
+            <div matSuffix>
+                <button mat-button mat-icon-button aria-label="Clear" (click)="value=''">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </div>
+        </ng-template>
+    </mat-form-field>
+    <button mat-button mat-icon-button>
+        <mat-icon>shopping_cart</mat-icon>
     </button>
-</mat-form-field>
+</mat-toolbar>
+<div style="width: 80%; background: red;margin: auto">
+    <div style="
+    width: 15%;
+    height: 100%;
+    position: fixed;
+    overflow: auto;
+    background:rgb(241, 241, 243)">
+        <product-category></product-category>
+    </div>
+    <div style="background: blue; right: 10%;position: fixed;width: 65%">
+        ádasd
+    </div>
+</div>

@@ -18,6 +18,7 @@ import { AccountCreationPage } from './components/admin/management-page/account/
 import { AccountRolePage } from './components/admin/management-page/account/account-creation/account-role/account-role';
 import { StoreViewPage } from './components/store-view/store-view';
 import { FormsModule } from '@angular/forms';
+import { ProductCatergory } from './components/store-view/category/category';
 const appRoutes: Routes = [
     //Management Page
     { path: 'sign-in', component: SignInComponent },
@@ -33,7 +34,8 @@ const appRoutes: Routes = [
     { path: 'account-createion', component: AccountCreationPage },
     { path: 'account-role', component: AccountRolePage },
     //Store View Page
-    { path: 'store-view', component: StoreViewPage }
+    { path: 'store-view', component: StoreViewPage },
+
 ];
 
 @NgModule({
@@ -51,7 +53,8 @@ const appRoutes: Routes = [
         AccountProfilePage,
         CustomerProfilePage,
         AccountRolePage,
-        StoreViewPage
+        StoreViewPage,
+        ProductCatergory
     ],
     imports: [
         BrowserModule,
