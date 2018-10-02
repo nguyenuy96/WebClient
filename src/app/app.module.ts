@@ -19,6 +19,7 @@ import { AccountRolePage } from './components/admin/management-page/account/acco
 import { StoreViewPage } from './components/store-view/store-view';
 import { FormsModule } from '@angular/forms';
 import { ProductCatergory } from './components/store-view/category/category';
+import { ProductCategoryDetail } from './components/store-view/category-detail/category-detail';
 const appRoutes: Routes = [
     //Management Page
     { path: 'sign-in', component: SignInComponent },
@@ -54,7 +55,8 @@ const appRoutes: Routes = [
         CustomerProfilePage,
         AccountRolePage,
         StoreViewPage,
-        ProductCatergory
+        ProductCatergory,
+        ProductCategoryDetail
     ],
     imports: [
         BrowserModule,

@@ -4,3 +4,24 @@
     font-family: 'Times New Roman', Times, serif;
     font-size: 20px
 }
+footer {
+    background-color: #777;
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+button {
+    width: 100%;
+    text-align: left
+}
+
+#category-scroll::-webkit-scrollbar
+{
+	width: 7px;
+	background-color: #F5F5F5;
+}
+
+#category-scroll::-webkit-scrollbar-thumb
+{
+	background-color: #757474;
+}

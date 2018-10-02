@@ -1,0 +1,15 @@
+mat-toolbar {
+    font-family: 'Times New Roman', Times, serif
+}
+
+footer {
+    background-color: #777;
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+button {
+    width: 100%;
+    text-align: left;
+    font-family: 'Times New Roman', Times, serif
+}
