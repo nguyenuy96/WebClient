@@ -1,6 +1,6 @@
 <div id="content">
     <div id="titleContent">
-        <h1>Nguyễn Hữu Úy</h1>
+        <h1>Baby & Mom Shop</h1>
     </div>
     <div id="formContent" class="container">
         <mat-card id="matcard">
@@ -17,17 +17,18 @@
             <p>
                 <mat-form-field id="matform">
                     <mat-label>Tài khoản</mat-label>
-                    <input matInput placeholder="Vui lòng nhập tài khoản">
+                    <input matInput placeholder="Vui lòng nhập tài khoản" #username>
                 </mat-form-field>
             </p>
             <p>
                 <mat-form-field id="matform">
                     <mat-label>Mật khẩu</mat-label>
-                    <input matInput placeholder="Vui lòng nhập mật khẩu" type="password">
+                    <input matInput placeholder="Vui lòng nhập mật khẩu" type="password" #password>
                 </mat-form-field>
             </p>
             <p>
-                <button mat-raised-button color="primary">Login</button>
+                <a style="padding-right: 10px; font-family: 'Times New Roman', Times, serif" routerLink="/add-product" routerLinkActive="active"><i>Đăng ký tài khoản</i></a>
+                <button mat-raised-button color="primary" (click)="login(username.value,password.value)">Login</button>
             </p>
         </mat-card>
     </div>

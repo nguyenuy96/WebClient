@@ -1,7 +1,9 @@
-<mat-grid-list cols="4" rowHeight="2:3">
+<mat-grid-list cols="4" rowHeight="4:5">
     <mat-grid-tile *ngFor="let product of products">
         <div class="container1">
-            <button mat-button class="image">image</button>
+            <button mat-button style="display: flex;">
+                <img class="image" src="{{product.image}}">
+            </button>
         </div>
         <div class="container2">
             <div class="container3">
