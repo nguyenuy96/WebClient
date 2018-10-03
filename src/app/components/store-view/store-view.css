@@ -1,8 +1,7 @@
 .example-form-field {
-    width: 40%;
-    margin: auto;
+    width: 100%;
     font-family: 'Times New Roman', Times, serif;
-    font-size: 20px
+    font-size: 18px
 }
 footer {
     background-color: #777;
@@ -24,4 +23,8 @@ button {
 #category-scroll::-webkit-scrollbar-thumb
 {
 	background-color: #757474;
+}
+
+a {
+    text-decoration: none
 }

@@ -1,13 +1,37 @@
 <div>
-    <div style="width: 100%;background: blue; height: 7%;position: fixed;
-    z-index: 1;">ádasd</div>
-    <div style="background: yellow; height: 93%;position: absolute;width: 100%;top:7%">
+    <div style="width: 100%; height: 10%;position: fixed;
+    align-items: center;margin: auto;display: flex;flex-wrap: wrap;">
+        <div style="position: absolute;left: 15%;height: 100%;display: flex;align-items: center">
+            <a routerLink="" routerLinkActive="active">
+                <h1>Book Trading Club</h1>
+            </a>
+        </div>
+        <div style="position: absolute;right: 30%;height: 100%;display: flex;align-items: center; width: 30%">
+            <mat-form-field class="example-form-field">
+                <input matInput type="text" placeholder="Tìm kiếm sản phẩm" [(ngModel)]="value">
+                <button mat-button *ngIf="value; else invalidvalue" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="value=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+                <ng-template #invalidvalue>
+                    <button mat-button matSuffix mat-icon-button>
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </ng-template>
+            </mat-form-field>
+            <button mat-icon-button>
+                    <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+                  </button>
+        </div>
+    </div>
+    <div style="background: yellow; height: 90%;position: absolute;width: 100%;top:10%">
         <div style="
             width: 15%;
             float: left;
             height: 100%;
             overflow: auto;
-            background:rgb(241, 241, 243);" id="category-scroll">
+            background:rgb(241, 241, 243);"
+            id="category-scroll">
             <product-category></product-category>
         </div>
         <div style="
