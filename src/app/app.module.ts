@@ -16,18 +16,28 @@ import { EmployeeProfilePage } from './components/admin/management-page/account/
 import { CustomerProfilePage } from './components/admin/management-page/account/account-creation/personal-profile/customer-profile/customer-profile';
 import { AccountCreationPage } from './components/admin/management-page/account/account-creation/account-creation';
 import { AccountRolePage } from './components/admin/management-page/account/account-creation/account-role/account-role';
-import { StoreViewPage } from './components/store-view/store-view';
 import { FormsModule } from '@angular/forms';
-import { ProductCatergory } from './components/store-view/category/category';
-import { ProductCategoryDetail } from './components/store-view/category-detail/category-detail';
 import { HttpClientModule } from '@angular/common/http';
+import { HomePage } from './components/home-page/home-page';
+import { StorePage } from './components/store-view/store-page';
+import { ProductCategoryDetail } from './components/store-view/category-detail/category-detail';
+import { ProductCatergory } from './components/store-view/category/category';
 const appRoutes: Routes = [
-    //Management Page
-    { path: 'sign-in', component: SignInComponent },
-    { path: 'admin', component: AdminPageComponent },
-    { path: 'product', component: ManageProductComponent },
+    //user with manager or employee role view
+    {
+        path: 'admin-page', component: AdminPageComponent, outlet: 'home', children: [
+            { path: 'account', component: AccountPage, outlet: 'admin' },
+            { path: 'product', component: ManageProductComponent, outlet: 'admin' },
+        ]
+    },
+
+    {
+        path: 'product-detail', component: ProductCategoryDetail
+    },
+    //customer view
+    { path: 'store-page', component: StorePage, outlet: 'home' },
     { path: 'add-product', component: AddProductComponent },
-    { path: 'account', component: AccountPage },
+
     { path: 'customer', component: CustomerPage },
     { path: 'employee', component: EmployeePage },
     { path: 'employee-profile', component: EmployeeProfilePage },
@@ -36,8 +46,9 @@ const appRoutes: Routes = [
     { path: 'account-createion', component: AccountCreationPage },
     { path: 'account-role', component: AccountRolePage },
     //Store View Page
-    { path: 'store-view', component: StoreViewPage },
-
+    //Home-page
+    { path: 'home-page', component: HomePage },
+    { path: 'login', component: SignInComponent, outlet: 'home' },
 ];
 
 @NgModule({
@@ -55,9 +66,10 @@ const appRoutes: Routes = [
         AccountProfilePage,
         CustomerProfilePage,
         AccountRolePage,
-        StoreViewPage,
+        StorePage,
         ProductCatergory,
-        ProductCategoryDetail
+        ProductCategoryDetail,
+        HomePage
     ],
     imports: [
         BrowserModule,

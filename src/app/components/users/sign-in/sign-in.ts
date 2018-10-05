@@ -13,19 +13,37 @@ import { HttpErrorResponse } from "@angular/common/http";
 export class SignInComponent {
     constructor(private route: ActivatedRoute,
         private userService: UserService, private router: Router
-    ){}
+    ) { }
     user: any;
     subscription: Subscription;
     login(username: string, password: string) {
-        this.user = {username: username, password: password};
+        this.user = { username: username, password: password };
         this.userService.login(this.user).subscribe(
             response => {
-                console.log(response.headers.get('authorization'));
+                sessionStorage.setItem('token', response.headers.get('authorization'));
+                this.detail(username);
             },
             (err: HttpErrorResponse) => {
-                alert(err.status);
+                alert("Tài khoản hoặc mật khẩu sai!");
             }
         )
-
+    }
+    detail(username: string) {
+        this.user = { username: username };
+        this.userService.detail(this.user).subscribe(
+            response => {
+                this.user = response.body;
+                if (this.user.permission.permissionType == "Manager" || this.user.permission.permissionType == "Employee") {
+                    this.router.navigate([{ outlets: { home: ['admin-page'] } }]);
+                    console.log(this.user.permission.permissionType);
+                } else {
+                    this.router.navigate([{ outlets: { home: ['store-page'] } }]);
+                    console.log(this.user.permission.permissionType);
+                }
+            },
+            (err: HttpErrorResponse) => {
+                console.log("asdasdsd");
+            }
+        )
     }
 }

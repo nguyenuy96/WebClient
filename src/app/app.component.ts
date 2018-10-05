@@ -9,7 +9,7 @@ const user: User[] = [
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./components/store-view/store-view.css']
+  styleUrls: ['./components/store-view/store-page.css']
 })
 
 export class AppComponent {

@@ -1,0 +1,33 @@
+<div>
+    <div class="navbar mat-elevation-z8">
+        <a routerLink="" routerLinkActive="active">
+            <h1>Baby & Mom</h1>
+        </a>
+        <mat-form-field class="example-form-field">
+            <input matInput type="text" class="toolbar-search" [(ngModel)]="value">
+            <mat-placeholder>Tìm kiếm</mat-placeholder>
+            <button mat-button *ngIf="value; else invalidvalue" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <mat-icon style=" color: white;font-size: 1.5em">close</mat-icon>
+            </button>
+            <ng-template #invalidvalue>
+                <button mat-button matSuffix mat-icon-button>
+                    <mat-icon style=" color: white;font-size: 1.5em">search</mat-icon>
+                </button>
+            </ng-template>
+        </mat-form-field>
+        <a>
+            <mat-icon style=" color: white;font-size: 3em">shopping_cart</mat-icon>
+        </a>
+        <button mat-button style="margin-left: 2%; color: white;;">
+            <mat-icon style=" color: white;font-size: 1.5em">search</mat-icon>
+            Đăng ký
+        </button>
+        <button mat-button style="margin-left: 1%; color: white;" [routerLink]="[{outlets: {home: ['login']}}]">
+            <mat-icon style=" color: white;font-size: 1.5em">search</mat-icon>
+            Đăng nhập
+        </button>
+    </div>
+    <div style="height: 90%;position: absolute;width: 100%;top:10%;">
+        <router-outlet name='home'></router-outlet>
+    </div>
+</div>

@@ -1,71 +1,68 @@
 <div>
     <div style="
         width: 15%;
-        height: 65%;
-        position: fixed;
+        height: 100%;
+        position: absolute;
         top: 0;
         bottom: 0;
         overflow: auto;
-        background:rgb(241, 241, 243)">
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Quản lý sản phẩm
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <button mat-button style="width: 100%; color: black; text-align: left" routerLink="/product" routerLinkActive="active">
-                Sản phẩm
-            </button>
-            <button mat-button style="width: 100%; color: black; text-align: left" routerLink="/product" routerLinkActive="active">
-                Loại sản phẩm
-            </button>
-            <button mat-button style="width: 100%; color: black; text-align: left" routerLink="/product" routerLinkActive="active">
-                Thương hiệu
-            </button>
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Quản lý tài khoản
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <button mat-button style="width: 100%; color: black; text-align: left" routerLink="/account" routerLinkActive="active">
-                Tài khoản
-            </button>
-            <button mat-button style="width: 100%; color: black; text-align: left" routerLink="/product" routerLinkActive="active">
-                Phân quyền
-            </button>
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Quản lý đơn hàng
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <button mat-button style="width: 100%; color: black; text-align: left" routerLink="/product" routerLinkActive="active">
-                Đơn hàng
-            </button>
-            <button mat-button style="width: 100%; color: black; text-align: left" routerLink="/account" routerLinkActive="active">
-                Tình trạng đơn hàng
-            </button>
-            <button mat-button style="width: 100%; color: black; text-align: left" routerLink="/product" routerLinkActive="active">
-                Giao dịch
-            </button>
-        </mat-expansion-panel>
+        background:rgb(241, 241, 243);overflow: auto;">
+        <div style="height: 80%;">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Quản lý sản phẩm
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <button mat-button style="width: 100%; color: black; text-align: left" [routerLink]="[{outlets: {admin: ['product']}}]">
+                    Sản phẩm
+                </button>
+                <button mat-button style="width: 100%; color: black; text-align: left" routerLink="/product" routerLinkActive="active">
+                    Loại sản phẩm
+                </button>
+                <button mat-button style="width: 100%; color: black; text-align: left" routerLink="/product" routerLinkActive="active">
+                    Thương hiệu
+                </button>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Quản lý tài khoản
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <button mat-button style="width: 100%; color: black; text-align: left" [routerLink]="[{outlets: {admin: ['account']}}]">
+                    Tài khoản
+                </button>
+                <button mat-button style="width: 100%; color: black; text-align: left" routerLink="/product" routerLinkActive="active">
+                    Phân quyền
+                </button>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Quản lý đơn hàng
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <button mat-button style="width: 100%; color: black; text-align: left" routerLink="/product" routerLinkActive="active">
+                    Đơn hàng
+                </button>
+                <button mat-button style="width: 100%; color: black; text-align: left" routerLink="/account" routerLinkActive="active">
+                    Tình trạng đơn hàng
+                </button>
+                <button mat-button style="width: 100%; color: black; text-align: left" routerLink="/product" routerLinkActive="active">
+                    Giao dịch
+                </button>
+            </mat-expansion-panel>
+
+        </div>
+        <div style="height: 20%;bottom: 0;background: blue">
+        </div>
     </div>
-    <div style="
-    width: 15%;
-    height: 35%;
-    position: fixed;
-    bottom: 0;
-    overflow: auto;
-    background:rgb(180, 18, 59)"></div>
+
     <div style="height: 100%;
     width: 85%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    overflow-x: hidden;right: 0;">
-        <router-outlet></router-outlet>
+    position: absolute;
+    overflow: auto;right: 0;">
+        <router-outlet name='admin'></router-outlet>
     </div>
 </div>

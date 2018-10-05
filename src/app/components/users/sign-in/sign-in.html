@@ -1,7 +1,4 @@
 <div id="content">
-    <div id="titleContent">
-        <h1>Baby & Mom Shop</h1>
-    </div>
     <div id="formContent" class="container">
         <mat-card id="matcard">
             <h2>
@@ -9,11 +6,6 @@
                     <mat-label>Đăng nhập</mat-label>
                 </p>
             </h2>
-            <p>
-                <mat-label>
-
-                </mat-label>
-            </p>
             <p>
                 <mat-form-field id="matform">
                     <mat-label>Tài khoản</mat-label>
@@ -27,8 +19,10 @@
                 </mat-form-field>
             </p>
             <p>
-                <a style="padding-right: 10px; font-family: 'Times New Roman', Times, serif" routerLink="/add-product" routerLinkActive="active"><i>Đăng ký tài khoản</i></a>
-                <button mat-raised-button color="primary" (click)="login(username.value,password.value)">Login</button>
+                <a style="padding-right: 10px; font-family: 'Times New Roman', Times, serif" routerLink="/add-product" routerLinkActive="active">
+                    <i>Đăng ký tài khoản</i>
+                </a>
+                <button mat-raised-button color="primary" (click)="login(username.value,password.value)">Đăng nhập</button>
             </p>
         </mat-card>
     </div>
