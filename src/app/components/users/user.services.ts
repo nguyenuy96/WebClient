@@ -13,7 +13,7 @@ const httpHeader = new HttpHeaders({
 export class UserService {
     constructor(private httpClient: HttpClient) { }
     loginUrl = "http://localhost:8888/account/login";
-    detailUrl = "http://localhost:8888/account/detail";
+    detailUrl = "http://localhost:8888/user/detail";
     login(user: User): Observable<HttpResponse<User>> {
         return this.httpClient.post<User>(this.loginUrl, user, {
             headers: httpHeader, observe: 'response'

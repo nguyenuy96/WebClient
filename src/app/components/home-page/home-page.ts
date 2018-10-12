@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: 'home-page',
@@ -8,4 +9,11 @@ import { Component } from "@angular/core";
 
 export class HomePage {
     value="";
+    user: any;
+    constructor(private route:ActivatedRoute){
+
+    }
+    ngOnInit(){
+        this.user = sessionStorage.getItem('user');
+    }
 }

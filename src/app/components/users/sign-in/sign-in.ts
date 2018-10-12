@@ -21,6 +21,7 @@ export class SignInComponent {
         this.userService.login(this.user).subscribe(
             response => {
                 sessionStorage.setItem('token', response.headers.get('authorization'));
+                sessionStorage.setItem('user', this.user);
                 this.detail(username);
             },
             (err: HttpErrorResponse) => {
@@ -33,12 +34,11 @@ export class SignInComponent {
         this.userService.detail(this.user).subscribe(
             response => {
                 this.user = response.body;
-                if (this.user.permission.permissionType == "Manager" || this.user.permission.permissionType == "Employee") {
-                    this.router.navigate([{ outlets: { home: ['admin-page'] } }]);
-                    console.log(this.user.permission.permissionType);
-                } else {
+                console.log(this.user);
+                if (this.user.accountRole.account_role == "Customer") {
                     this.router.navigate([{ outlets: { home: ['store-page'] } }]);
-                    console.log(this.user.permission.permissionType);
+                } else {
+                    this.router.navigate([{ outlets: { home: ['admin-page'] } }]);
                 }
             },
             (err: HttpErrorResponse) => {

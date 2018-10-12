@@ -15,10 +15,10 @@
                 </button>
             </ng-template>
         </mat-form-field>
-        <a>
+        <a routerLink="" routerLinkActive="active">
             <mat-icon style=" color: white;font-size: 3em">shopping_cart</mat-icon>
         </a>
-        <button mat-button style="margin-left: 2%; color: white;;">
+        <button mat-button style="margin-left: 2%; color: white;" *ngIf="user">
             <mat-icon style=" color: white;font-size: 1.5em">search</mat-icon>
             Đăng ký
         </button>
