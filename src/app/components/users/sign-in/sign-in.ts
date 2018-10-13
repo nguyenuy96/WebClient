@@ -3,6 +3,7 @@ import { UserService } from "../user.services";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { HttpErrorResponse } from "@angular/common/http";
+import { HomePage } from "../../home-page/home-page";
 
 @Component({
     selector: 'sign-in',
@@ -12,7 +13,7 @@ import { HttpErrorResponse } from "@angular/common/http";
 })
 export class SignInComponent {
     constructor(private route: ActivatedRoute,
-        private userService: UserService, private router: Router
+        private userService: UserService, private router: Router, private homePage: HomePage
     ) { }
     user: any;
     subscription: Subscription;
@@ -21,7 +22,6 @@ export class SignInComponent {
         this.userService.login(this.user).subscribe(
             response => {
                 sessionStorage.setItem('token', response.headers.get('authorization'));
-                sessionStorage.setItem('user', this.user);
                 this.detail(username);
             },
             (err: HttpErrorResponse) => {
@@ -34,7 +34,9 @@ export class SignInComponent {
         this.userService.detail(this.user).subscribe(
             response => {
                 this.user = response.body;
-                console.log(this.user);
+                var account = JSON.stringify(this.user);
+                sessionStorage.setItem('user', account);
+                this.homePage.ngOnInit();
                 if (this.user.accountRole.account_role == "Customer") {
                     this.router.navigate([{ outlets: { home: ['store-page'] } }]);
                 } else {

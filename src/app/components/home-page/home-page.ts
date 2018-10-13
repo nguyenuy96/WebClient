@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { Account } from "../interface/interface";
 
 @Component({
     selector: 'home-page',
@@ -8,12 +9,10 @@ import { ActivatedRoute } from "@angular/router";
 })
 
 export class HomePage {
-    value="";
-    user: any;
-    constructor(private route:ActivatedRoute){
-
-    }
-    ngOnInit(){
-        this.user = sessionStorage.getItem('user');
+    value = "";
+    account: any;
+    ngOnInit() {
+        if(sessionStorage.length > 0)
+        this.account = JSON.parse(sessionStorage.user);
     }
 }
