@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Account } from "../interface/interface";
 
 @Component({
@@ -11,8 +11,19 @@ import { Account } from "../interface/interface";
 export class HomePage {
     value = "";
     account: any;
+    constructor(private router: Router) { }
     ngOnInit() {
-        if(sessionStorage.length > 0)
-        this.account = JSON.parse(sessionStorage.user);
+        if (sessionStorage.length > 0)
+            this.account = JSON.parse(sessionStorage.user);
+        console.log(this.account);
+        if (this.account == null || this.account.accountRole.account_role == "Customer") {
+            this.router.navigate([{ outlets: { home: ['store-page'] } }]);
+        } else {
+            this.router.navigate([{ outlets: { home: ['admin-page'] } }]);
+        }
+    }
+    logOut(){
+        sessionStorage.removeItem('user');
+        this.ngOnInit();
     }
 }

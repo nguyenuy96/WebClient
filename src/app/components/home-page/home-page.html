@@ -18,10 +18,17 @@
         <a routerLink="" routerLinkActive="active">
             <mat-icon style=" color: white;font-size: 3em">shopping_cart</mat-icon>
         </a>
-        <button mat-button style="margin-left: 2%; color: white;" *ngIf="account; else notLogin">
-            <mat-icon style=" color: white;font-size: 1.5em">search</mat-icon>
+        <button mat-button [matMenuTriggerFor]="menu" style="margin-left: 2%; color: white;" *ngIf="account; else notLogin">
             {{account.username}}
+            <mat-icon>expand_more</mat-icon>
         </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>Thông tin cá nhân</button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item>Đổi mật khẩu</button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="logOut()">Đăng xuất</button>
+        </mat-menu>
         <ng-template #notLogin>
             <button mat-button style="margin-left: 2%; color: white;">
                 <mat-icon style=" color: white;font-size: 1.5em">search</mat-icon>
@@ -34,6 +41,7 @@
         </ng-template>
     </div>
     <div style="height: 90%;position: absolute;width: 100%;top:10%;">
-        <router-outlet name='home'></router-outlet>
+        <router-outlet name='home'>
+        </router-outlet>
     </div>
 </div>
