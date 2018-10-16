@@ -2,6 +2,19 @@ export interface Role{
     id: number;
     account_role:string;
 }
+export class RoleImp implements Role{
+    id: number;
+    account_role: string;sfasdf
+    
+    setAcccountRole(account_role : string) {
+        this.account_role = account_role;
+    }
+    
+    public get getAccountRole() : string {
+        return this.account_role;
+    }
+    
+}
 export interface Account{
     id:number;
     username: string;

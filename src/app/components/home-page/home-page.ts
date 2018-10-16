@@ -11,19 +11,25 @@ import { Account } from "../interface/interface";
 export class HomePage {
     value = "";
     account: any;
+    isLogined: boolean;
     constructor(private router: Router) { }
     ngOnInit() {
-        if (sessionStorage.length > 0)
-            this.account = JSON.parse(sessionStorage.user);
-        console.log(this.account);
-        if (this.account == null || this.account.accountRole.account_role == "Customer") {
-            this.router.navigate([{ outlets: { home: ['store-page'] } }]);
+        var account = sessionStorage.user;
+        this.isLogined = account == undefined ? false : true;
+        if (this.isLogined) {
+            this.account = JSON.parse(account);
+            if (this.account.accountRole.account_role == "Customer") {
+                this.router.navigate([{ outlets: { home: ['store-page'] } }]);
+            } else {
+                this.router.navigate([{ outlets: { home: ['admin-page'] } }]);
+            }
         } else {
-            this.router.navigate([{ outlets: { home: ['admin-page'] } }]);
+            this.router.navigate([{ outlets: { home: ['store-page'] } }]);
         }
     }
-    logOut(){
+    logOut() {
         sessionStorage.removeItem('user');
+        this.account = undefined;
         this.ngOnInit();
     }
 }

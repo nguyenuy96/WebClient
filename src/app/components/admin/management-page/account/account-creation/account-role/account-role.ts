@@ -1,17 +1,26 @@
 import { Component } from "@angular/core";
-export interface AccountRole {
-    name: string
-}
+import { RoleService } from "../../../../../../services/role.service";
+import { Role } from "../../../../../interface/interface";
+import { AccountProfilePage } from "../account-profile/account-profile";
+import { AccountCreationPage } from "../account-creation";
 @Component({
     selector: 'account-role',
     templateUrl: './account-role.html',
-    styleUrls: ['./account-role.css']
+    styleUrls: ['./account-role.css'],
+    providers: [AccountProfilePage]
 })
 
 export class AccountRolePage {
-        accountroles: AccountRole[] = [
-            { name: 'Quản trị viên' },
-            { name: 'Nhân viên' },
-            { name: 'Khách hàng' }
-        ];
+    constructor(private roleService: RoleService, private accountCreation: AccountCreationPage) { }
+    listRole: Role[];
+    ngOnInit() {
+        this.roleService.listRoles().subscribe(
+            response => {
+                this.listRole = response.body;
+            }
+        );
+    }
+    select(role:any){
+        this.accountCreation.setAccountRole(role);
+    }
 }

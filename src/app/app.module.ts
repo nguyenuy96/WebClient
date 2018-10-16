@@ -22,6 +22,8 @@ import { HomePage } from './components/home-page/home-page';
 import { StorePage } from './components/store-view/store-page';
 import { ProductCategoryDetail } from './components/store-view/category-detail/category-detail';
 import { ProductCatergory } from './components/store-view/category/category';
+import { _RequestHeader } from './services/header';
+import { RoleService } from './services/role.service';
 const appRoutes: Routes = [
     //user with manager or employee role view
     {
@@ -81,7 +83,7 @@ const appRoutes: Routes = [
         MaterialModule,
         FormsModule
     ],
-    providers: [],
+    providers: [_RequestHeader, RoleService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

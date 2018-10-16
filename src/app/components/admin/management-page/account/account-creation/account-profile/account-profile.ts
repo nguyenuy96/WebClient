@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Account } from "../../../../../interface/interface";
 export interface AccountRole {
     name: string
 }
@@ -9,9 +10,6 @@ export interface AccountRole {
 })
 
 export class AccountProfilePage {
-    accountroles: AccountRole[] = [
-        { name: 'Quản trị viên' },
-        { name: 'Nhân viên' },
-        { name: 'Khách hàng' }
-    ];
+    account_role: any;
+    account: Account;
 }
