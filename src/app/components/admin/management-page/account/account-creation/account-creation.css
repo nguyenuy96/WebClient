@@ -8,3 +8,7 @@ button {
 ::ng-deep ng-template {
     font-family: 'Times New Roman', Times, serif
 }
+mat-select,  mat-option {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+}

@@ -13,6 +13,7 @@ import { AccountCreationPage } from "../account-creation";
 export class AccountRolePage {
     constructor(private roleService: RoleService, private accountCreation: AccountCreationPage) { }
     listRole: Role[];
+    role: Role;
     ngOnInit() {
         this.roleService.listRoles().subscribe(
             response => {
@@ -21,6 +22,6 @@ export class AccountRolePage {
         );
     }
     select(role:any){
-        this.accountCreation.setAccountRole(role);
+        this.accountCreation.setRole(role);
     }
 }

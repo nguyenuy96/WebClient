@@ -1,25 +1,25 @@
 <mat-horizontal-stepper linear #stepper>
-    <mat-step [editable]="false">
+    <mat-step>
         <ng-template matStepLabel>Đối tượng sử dụng</ng-template>
         <mat-card style="width: 20%;">
             <account-role></account-role>
             <div>
-                <button mat-button matStepperNext (click)="setRoleToAccount()">Next</button>
+                <button mat-button matStepperNext (click)="nextStep()">Next</button>
             </div>
         </mat-card>
     </mat-step>
-    <mat-step [editable]="false">
+    <mat-step>
         <ng-template matStepLabel>Thông tin tài khoản</ng-template>
         <mat-card style="width: 35%; margin: auto">
             <h2 style="text-align: center">Thông tin tài khoản</h2>
             <account-profile></account-profile>
             <div>
                 <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
+                <button mat-button matStepperNext (click)="setUsername()">Next</button>
             </div>
         </mat-card>
     </mat-step>
-    <mat-step [editable]="false">
+    <mat-step>
         <ng-template matStepLabel>Thông tin cá nhân</ng-template>
         <mat-card style="width: 35%; margin: auto">
             <h2 style="text-align: center">Thông tin cá nhân</h2>

@@ -16,7 +16,7 @@ import { EmployeeProfilePage } from './components/admin/management-page/account/
 import { CustomerProfilePage } from './components/admin/management-page/account/account-creation/personal-profile/customer-profile/customer-profile';
 import { AccountCreationPage } from './components/admin/management-page/account/account-creation/account-creation';
 import { AccountRolePage } from './components/admin/management-page/account/account-creation/account-role/account-role';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomePage } from './components/home-page/home-page';
 import { StorePage } from './components/store-view/store-page';
@@ -71,7 +71,7 @@ const appRoutes: Routes = [
         StorePage,
         ProductCatergory,
         ProductCategoryDetail,
-        HomePage
+        HomePage,
     ],
     imports: [
         BrowserModule,
@@ -81,9 +81,9 @@ const appRoutes: Routes = [
         ),
         BrowserAnimationsModule,
         MaterialModule,
-        FormsModule
+        FormsModule, ReactiveFormsModule
     ],
-    providers: [_RequestHeader, RoleService],
+    providers: [_RequestHeader, RoleService, FormBuilder],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

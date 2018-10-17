@@ -1,6 +1,6 @@
 <mat-form-field>
     <mat-select placeholder="Loại tài khoản*">
-        <mat-option *ngFor="let role of listRole" [value]="role" (click)="select(role.account_role)">
+        <mat-option *ngFor="let role of listRole" [value]="role" (click)="select(role)">
             {{role.account_role}}
         </mat-option>
     </mat-select>
