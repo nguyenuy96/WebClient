@@ -6,8 +6,8 @@ import { AccountCreationPage } from "../account-creation";
 @Component({
     selector: 'account-role',
     templateUrl: './account-role.html',
-    styleUrls: ['./account-role.css'],
-    providers: [AccountProfilePage]
+    styleUrls: ['./account-role.css']
+    
 })
 
 export class AccountRolePage {

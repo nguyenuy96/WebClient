@@ -2,50 +2,79 @@ import { Component } from "@angular/core";
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { RoleService } from "../../../../../services/role.service";
 import { AccountProfilePage } from "./account-profile/account-profile";
-import { Role, Account } from "../../../../interface/interface";
+import { Role, Account, Customer, Employee } from "../../../../interface/interface";
 import { Profile } from "selenium-webdriver/firefox";
 import { AccountRolePage } from "./account-role/account-role";
+import { AccountService } from "./account.service";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
     selector: 'account-creation',
     templateUrl: './account-creation.html',
     styleUrls: ['./account-creation.css'],
-    providers: [AccountProfilePage]
 })
 
 export class AccountCreationPage {
     role: Role;
     account: Account;
-    profile: Profile;
     username: any;
     password: string;
     listRole: Role[];
-    constructor( private roleService: RoleService, private a: AccountProfilePage) { }
+    isValidAccount: boolean;
+    isValidProfile: boolean;
+    cusProfile: Customer;
+    emplProfile: Employee;
+    constructor(private accountService: AccountService) { }
     ngOnInit() {
     }
     setRole(role: any) {
         this.role = role;
     }
-    nextStep(){
+    goAccountProf() {
         console.log(this.role);
     }
-    getUsername(account:any){
-        this.account = account;
-        console.log(this.username);
-    }
-    setUsername() {
-        this.account = this.a.getUsername();
+    goCusOrAdminProf() {
+        this.account.role = this.role;
         console.log(this.account);
     }
-    // setPassword(account: any) {
-    //     this.account = account;
-    //     console.log(this.account);
-    // }
-    // setAccount() {
-    //     console.log(this.account);
-    // }
-    // setProfile(profile: any) {
-    //     this.profile = profile;
-    // }
+    setAccount(account: any) {
+        this.account = account;
+    }
+    validateAccount(isValidAccount: boolean) {
+        this.isValidAccount = isValidAccount;
+    }
+
+    goConfirmPanel(isValidProfile: boolean) {
+        if (this.role.account_role === "Customer") {
+            this.cusProfile.account = this.account;
+            this.accountService.saveUser(this.cusProfile).subscribe(
+                resp => {
+                    console.log('ok')
+                },
+                (err: HttpErrorResponse) => {
+                    console.log(err.message);
+                }
+            )
+        } else {
+            this.emplProfile.account = this.account;
+            this.accountService.saveUser(this.emplProfile).subscribe(
+                resp => {
+                    console.log('ok')
+                },
+                (err: HttpErrorResponse) => {
+                    console.log(err.message);
+                }
+            )
+        }
+    }
+    validateProfile(isValidProfile: boolean) {
+        this.isValidProfile = isValidProfile;
+    }
+    setCusProf(cusProfile: any) {
+        this.cusProfile = cusProfile;
+    }
+    setEmplProf(emplProfile: any) {
+        this.emplProfile = emplProfile;
+    }
 
 }

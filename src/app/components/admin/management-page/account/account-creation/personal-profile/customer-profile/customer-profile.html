@@ -1,18 +1,18 @@
 <p>
     <mat-form-field>
         <mat-label>Họ và tên *</mat-label>
-        <input matInput>
+        <input matInput id="fullname" (input) = "validateCusProf()" [(ngModel)] = "fullname">
     </mat-form-field>
 </p>
 <p>
     <mat-form-field>
         <mat-label>Địa chỉ *</mat-label>
-        <input matInput>
+        <input matInput id="address" (input) = "validateCusProf()" [(ngModel)] = "address">
     </mat-form-field>
 </p>
 <p>
     <mat-form-field>
         <mat-label>Số điện thoại *</mat-label>
-        <input matInput>
+        <input matInput id="phone" (input) = "validateCusProf()" [(ngModel)] = "phone">
     </mat-form-field>
 </p>
