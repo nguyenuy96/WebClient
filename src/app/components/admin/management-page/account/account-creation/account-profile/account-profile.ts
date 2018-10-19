@@ -22,6 +22,7 @@ export class AccountProfilePage {
     retype_password = '';
     role: Role;
     invalid: any;
+    isExisted: any;
     validateAccount() {
         var username = (document.getElementById('username') as HTMLInputElement).value;
         if (username == '') {
@@ -33,16 +34,19 @@ export class AccountProfilePage {
                     if ((this.username != '') && (this.password != '') && (this.retype_password != '') && (this.password == this.retype_password)) {
                         this.accountCreation.validateAccount(true);
                         this.setAccount();
+                        this.isExisted = true;
                     }
                 },
                 (err: HttpErrorResponse) => {
                     this.accountCreation.validateAccount(false);
+                    this.isExisted = false;
                 }
             )
         }
     }
     validateInput() {
-        if ((this.username != '') && (this.password != '') && (this.retype_password != '') && (this.password == this.retype_password)) {
+        console.log(this.isExisted);
+        if ((this.username != '') && (this.password != '') && (this.retype_password != '') && (this.password == this.retype_password) && this.isExisted) {
             this.accountCreation.validateAccount(true);
             this.setAccount();
         } else {

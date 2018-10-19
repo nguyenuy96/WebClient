@@ -15,6 +15,7 @@ import { HttpErrorResponse } from "@angular/common/http";
 })
 
 export class AccountCreationPage {
+    isLinear = false;
     role: Role;
     account: Account;
     username: any;
@@ -47,22 +48,24 @@ export class AccountCreationPage {
     goConfirmPanel(isValidProfile: boolean) {
         if (this.role.account_role === "Customer") {
             this.cusProfile.account = this.account;
+            console.log(this.cusProfile);
             this.accountService.saveUser(this.cusProfile).subscribe(
                 resp => {
                     console.log('ok')
                 },
                 (err: HttpErrorResponse) => {
-                    console.log(err.message);
+                    console.log(err.error.message);
                 }
             )
         } else {
             this.emplProfile.account = this.account;
+            console.log(this.emplProfile);
             this.accountService.saveUser(this.emplProfile).subscribe(
                 resp => {
-                    console.log('ok')
+                    console.log(this.emplProfile);
                 },
                 (err: HttpErrorResponse) => {
-                    console.log(err.message);
+                    console.log(err.error.errMessage);
                 }
             )
         }

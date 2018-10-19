@@ -12,16 +12,16 @@ export interface Account {
 
 export interface Customer {
     id: number;
-    fullname: string;
-    phone: string;
+    name: string;
+    phoneNumber: string;
     address: string;
     account: Account;
 }
 
 export interface Employee {
     id: number;
-    fullname: string;
-    phone: string;
+    name: string;
+    phoneNumber: string;
     address: string;
     gender: string;
     nationality: string;

@@ -19,7 +19,7 @@ export class CustomerProfilePage {
         var phone = (document.getElementById('phone') as HTMLInputElement).value;
         if ((this.phone != '') && (this.fullname != '') && (this.phone != '')) {
             this.accCreation.validateProfile(true);
-            this.customer = { fullname: fullname, address: address, phone: phone }
+            this.customer = { name: fullname, address: address, phoneNumber: phone }
         } else {
             this.customer = undefined;
             this.accCreation.validateProfile(false);

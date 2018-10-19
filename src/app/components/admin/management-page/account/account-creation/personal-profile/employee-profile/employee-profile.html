@@ -5,9 +5,9 @@
     </mat-form-field>
 </p>
 <p>
-    <mat-radio-group [(ngModel)]="gender">
-        <mat-radio-button style="margin-right: 5%" (change)="selectGender('Nam')">Nam</mat-radio-button>
-        <mat-radio-button style="margin-right: 5%" (change)="selectGender('Nu')">Nu</mat-radio-button>
+    <mat-radio-group>
+        <mat-radio-button style="margin-right: 5%" (change)="selectGender('Nam')" [value]="Name">Nam</mat-radio-button>
+        <mat-radio-button style="margin-right: 5%" (change)="selectGender('Nu')" [value]="Nu">Nu</mat-radio-button>
     </mat-radio-group>
 
 </p>
