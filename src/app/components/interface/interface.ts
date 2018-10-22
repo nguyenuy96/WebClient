@@ -28,3 +28,13 @@ export interface Employee {
     identification: string;
     account: Account;
 }
+export interface UserProfile{
+    id: number;
+    name: string;
+    phoneNumber: string;
+    address: string;
+    gender: string;
+    nationality: string;
+    identification: string;
+    account: Account;
+}

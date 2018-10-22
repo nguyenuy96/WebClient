@@ -1,12 +1,15 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { RoleService } from "../../../../../services/role.service";
 import { AccountProfilePage } from "./account-profile/account-profile";
-import { Role, Account, Customer, Employee } from "../../../../interface/interface";
+import { Role, Account, Customer, Employee, UserProfile } from "../../../../interface/interface";
 import { Profile } from "selenium-webdriver/firefox";
 import { AccountRolePage } from "./account-role/account-role";
 import { AccountService } from "./account.service";
 import { HttpErrorResponse } from "@angular/common/http";
+import { CustomerProfilePage } from "./personal-profile/customer-profile/customer-profile";
+import { EmployeeProfilePage } from "./personal-profile/employee-profile/employee-profile";
+import { AccountCreationService } from "./account-creation.service";
 
 @Component({
     selector: 'account-creation',
@@ -15,69 +18,45 @@ import { HttpErrorResponse } from "@angular/common/http";
 })
 
 export class AccountCreationPage {
-    isLinear = false;
+    @ViewChild(AccountRolePage) accountRolePage: AccountRolePage;
+    @ViewChild(AccountProfilePage) accountProfilePage: AccountProfilePage;
+    @ViewChild(EmployeeProfilePage) employeeProfilePage: EmployeeProfilePage;
+    @ViewChild(CustomerProfilePage) customerProfilePage: CustomerProfilePage;
     role: Role;
     account: Account;
-    username: any;
-    password: string;
-    listRole: Role[];
     isValidAccount: boolean;
-    isValidProfile: boolean;
-    cusProfile: Customer;
-    emplProfile: Employee;
+    userProfile: UserProfile;
     constructor(private accountService: AccountService) { }
-    ngOnInit() {
-    }
-    setRole(role: any) {
-        this.role = role;
-    }
-    goAccountProf() {
-        console.log(this.role);
-    }
-    goCusOrAdminProf() {
-        this.account.role = this.role;
-        console.log(this.account);
-    }
-    setAccount(account: any) {
-        this.account = account;
-    }
-    validateAccount(isValidAccount: boolean) {
-        this.isValidAccount = isValidAccount;
-    }
 
-    goConfirmPanel(isValidProfile: boolean) {
-        if (this.role.account_role === "Customer") {
-            this.cusProfile.account = this.account;
-            console.log(this.cusProfile);
-            this.accountService.saveUser(this.cusProfile).subscribe(
-                resp => {
-                    console.log('ok')
-                },
-                (err: HttpErrorResponse) => {
-                    console.log(err.error.message);
-                }
-            )
-        } else {
-            this.emplProfile.account = this.account;
-            console.log(this.emplProfile);
-            this.accountService.saveUser(this.emplProfile).subscribe(
-                resp => {
-                    console.log(this.emplProfile);
-                },
-                (err: HttpErrorResponse) => {
-                    console.log(err.error.errMessage);
-                }
-            )
+    get roleForm() {
+        this.role = this.accountRolePage.role;
+        return this.accountRolePage ? this.accountRolePage.roleForm : null;
+    }
+    get accountForm() {
+        this.account = this.accountProfilePage.account;
+        if (this.account != undefined && this.accountProfilePage.accountForm.valid) {
+            this.account.role = this.role;
         }
+        return this.accountProfilePage ? this.accountProfilePage.accountForm : null;
     }
-    validateProfile(isValidProfile: boolean) {
-        this.isValidProfile = isValidProfile;
-    }
-    setCusProf(cusProfile: any) {
-        this.cusProfile = cusProfile;
-    }
-    setEmplProf(emplProfile: any) {
-        this.emplProfile = emplProfile;
+    get profileForm() {
+        if (this.role != undefined) {
+            if (this.role.account_role == 'Customer') {
+                if (this.customerProfilePage != undefined) {
+                    this.userProfile = this.customerProfilePage.userProfile;
+                    if (this.customerProfilePage.userProfile != undefined && this.customerProfilePage.customerForm.valid) {
+                        this.customerProfilePage.userProfile.account = this.account;
+                    }
+                }
+
+                return this.customerProfilePage ? this.customerProfilePage.customerForm : null;
+            } else {
+                if (this.employeeProfilePage != undefined) {
+                    this.userProfile = this.employeeProfilePage.userProfile;
+                }
+                return this.employeeProfilePage ? this.employeeProfilePage.employeeForm : null;
+            }
+        }
     }
 
 }

@@ -1,40 +1,55 @@
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
-    <mat-step>
+<mat-horizontal-stepper linear #stepper>
+    <mat-step [stepControl]="roleForm">
         <ng-template matStepLabel>Đối tượng sử dụng</ng-template>
         <mat-card style="width: 20%;">
             <account-role></account-role>
-            <div>
-                <button mat-button matStepperNext (click)="goAccountProf()">Next</button>
-            </div>
         </mat-card>
     </mat-step>
-    <mat-step>
+    <mat-step [stepControl]="accountForm">
         <ng-template matStepLabel>Thông tin tài khoản</ng-template>
         <mat-card style="width: 35%; margin: auto">
             <h2 style="text-align: center">Thông tin tài khoản</h2>
-            <account-profile *ngIf="role"></account-profile>
-            <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext (click)="goCusOrAdminProf()" *ngIf="isValidAccount ===true">Next</button>
-            </div>
+            <account-profile></account-profile>
         </mat-card>
     </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Thông tin cá nhân</ng-template>
-        <mat-card style="width: 35%; margin: auto">
-            <h2 style="text-align: center">Thông tin cá nhân</h2>
-            <div *ngIf="account">
-                <customer-profile *ngIf="role.account_role === 'Customer'; else administrator"></customer-profile>
+    <!-- <div *ngIf="role">
+        <div *ngIf="role.account_role === 'Employee'">
+            <mat-step [stepControl]="employeeForm">
+                <ng-template matStepLabel>Thông tin cá nhân</ng-template>
+                <mat-card style="width: 35%; margin: auto">
+                    <h2 style="text-align: center">Thông tin cá nhân</h2>
+                    <div>
+                        <employee-profile></employee-profile>
+                    </div>
+                </mat-card>
+            </mat-step>
+        </div>
+        <div *ngIf="role.account_role === 'Customer'">
+            <mat-step [stepControl]="customerForm">
+                <ng-template matStepLabel>Thông tin cá nhân</ng-template>
+                <mat-card style="width: 35%; margin: auto">
+                    <h2 style="text-align: center">Thông tin cá nhân</h2>
+                    <div>
+                        <customer-profile></customer-profile>
+                    </div>
+                </mat-card>
+            </mat-step>
+        </div>
+    </div> -->
+    <div *ngIf="role">
+        <mat-step [stepControl]="profileForm">
+            <ng-template matStepLabel>Thông tin cá nhân</ng-template>
+            <mat-card style="width: 35%; margin: auto">
+                <h2 style="text-align: center">Thông tin cá nhân</h2>
+                <div *ngIf="role.account_role === 'Customer'; else administrator">
+                    <customer-profile></customer-profile>
+                </div>
                 <ng-template #administrator>
                     <employee-profile></employee-profile>
                 </ng-template>
-            </div>
-            <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext *ngIf="isValidProfile === true " (click)="goConfirmPanel()">Next</button>
-            </div>
-        </mat-card>
-    </mat-step>
+            </mat-card>
+        </mat-step>
+    </div>
     <mat-step>
         <ng-template matStepLabel>Done</ng-template>
         <mat-card style="width: 35%;margin: auto">

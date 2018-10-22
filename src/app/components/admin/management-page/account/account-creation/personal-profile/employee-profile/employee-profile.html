@@ -1,39 +1,46 @@
-<p>
-    <mat-form-field>
-        <mat-label>Họ và tên *</mat-label>
-        <input matInput id="fullname" (input)="validateEmplProf()" [(ngModel)]="fullname">
-    </mat-form-field>
-</p>
-<p>
-    <mat-radio-group>
-        <mat-radio-button style="margin-right: 5%" (change)="selectGender('Nam')" [value]="Name">Nam</mat-radio-button>
-        <mat-radio-button style="margin-right: 5%" (change)="selectGender('Nu')" [value]="Nu">Nu</mat-radio-button>
-    </mat-radio-group>
+<form [formGroup]="employeeForm" (submit) = "submitEmpl()">
+    <div formGroupName="employee">
+        <p>
+            <mat-form-field>
+                <mat-label>Họ và tên *</mat-label>
+                <input matInput id="fullname" formControlName="name">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-radio-group formControlName="gender">
+                <mat-radio-button style="margin-right: 5%" *ngFor="let gender of genders" [value]="gender">{{gender}}</mat-radio-button>
+            </mat-radio-group>
 
-</p>
+        </p>
 
-<p>
-    <mat-form-field>
-        <mat-label>Địa chỉ *</mat-label>
-        <input matInput id="address" (input)="validateEmplProf()" [(ngModel)]="address">
-    </mat-form-field>
-</p>
-<p>
-    <mat-form-field>
-        <mat-label>Số điện thoại *</mat-label>
-        <input matInput id="phone" (input)="validateEmplProf()" [(ngModel)]="phone">
-    </mat-form-field>
-</p>
-<p>
-    <mat-form-field>
-        <mat-label>Chứng minh thư *</mat-label>
-        <input matInput id="identification" (input)="validateEmplProf()" [(ngModel)]="identification">
-    </mat-form-field>
-</p>
-<p>
-    <mat-form-field style="width: 35%">
-        <mat-select placeholder="Quốc tịch">
-            <mat-option *ngFor="let nation of nations" [value]="nation.value" (click)="selectNation(nation.value)">{{nation.value}}</mat-option>
-        </mat-select>
-    </mat-form-field>
-</p>
+        <p>
+            <mat-form-field>
+                <mat-label>Địa chỉ *</mat-label>
+                <input matInput id="address" formControlName="address">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <mat-label>Số điện thoại *</mat-label>
+                <input matInput id="phone" formControlName="phoneNumber">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <mat-label>Chứng minh thư *</mat-label>
+                <input matInput id="identification" formControlName="identification">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field style="width: 35%">
+                <mat-select placeholder="Quốc tịch" formControlName="nationality">
+                    <mat-option *ngFor="let nation of nations" [value]="nation.value">{{nation.value}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </p>
+    </div>
+    <div>
+        <button mat-button matStepperPrevious>Quay lại</button>
+        <button mat-button matStepperNext (click)="abc()">Next</button>
+    </div>
+</form>

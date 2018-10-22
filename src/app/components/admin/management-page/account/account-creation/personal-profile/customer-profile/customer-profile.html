@@ -1,18 +1,26 @@
-<p>
-    <mat-form-field>
-        <mat-label>Họ và tên *</mat-label>
-        <input matInput id="fullname" (input) = "validateCusProf()" [(ngModel)] = "fullname">
-    </mat-form-field>
-</p>
-<p>
-    <mat-form-field>
-        <mat-label>Địa chỉ *</mat-label>
-        <input matInput id="address" (input) = "validateCusProf()" [(ngModel)] = "address">
-    </mat-form-field>
-</p>
-<p>
-    <mat-form-field>
-        <mat-label>Số điện thoại *</mat-label>
-        <input matInput id="phone" (input) = "validateCusProf()" [(ngModel)] = "phone">
-    </mat-form-field>
-</p>
+<form [formGroup]="customerForm" (submit)="submitCus()">
+    <div formGroupName="customer">
+        <p>
+            <mat-form-field>
+                <mat-label>Họ và tên *</mat-label>
+                <input matInput id="fullname" formControlName="name">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <mat-label>Địa chỉ *</mat-label>
+                <input matInput id="address" formControlName="address">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <mat-label>Số điện thoại *</mat-label>
+                <input matInput id="phone" formControlName="phoneNumber">
+            </mat-form-field>
+        </p>
+    </div>
+    <div>
+        <button mat-button matStepperPrevious>Quay lại</button>
+        <button mat-button matStepperNext (click)="saveCustomer()">Next</button>
+    </div>
+</form>

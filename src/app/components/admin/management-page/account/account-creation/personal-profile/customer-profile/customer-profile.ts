@@ -1,30 +1,39 @@
 import { Component } from "@angular/core";
-import { Customer } from "../../../../../../interface/interface";
+import { Customer, UserProfile } from "../../../../../../interface/interface";
 import { AccountCreationPage } from "../../account-creation";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { AccountCreationService } from "../../account-creation.service";
+import { AccountService } from "../../account.service";
 
 @Component({
     selector: 'customer-profile',
     templateUrl: './customer-profile.html',
-    styleUrls: ['./customer-profile.css'],
+    styleUrls: ['./customer-profile.css']
 })
 export class CustomerProfilePage {
-    customer: any;
+    constructor(private formBuilder: FormBuilder, private accountSrvc: AccountService) { }
+    userProfile: UserProfile;
     address = '';
     fullname = '';
     phone = '';
-    constructor(private accCreation: AccountCreationPage) { }
-    validateCusProf() {
-        var address = (document.getElementById('address') as HTMLInputElement).value;
-        var fullname = (document.getElementById('fullname') as HTMLInputElement).value;
-        var phone = (document.getElementById('phone') as HTMLInputElement).value;
-        if ((this.phone != '') && (this.fullname != '') && (this.phone != '')) {
-            this.accCreation.validateProfile(true);
-            this.customer = { name: fullname, address: address, phoneNumber: phone }
-        } else {
-            this.customer = undefined;
-            this.accCreation.validateProfile(false);
-        }
-        this.accCreation.setCusProf(this.customer);
+    customerForm: FormGroup;
+    ngOnInit() {
+        this.customerForm = this.formBuilder.group({
+            customer: this.formBuilder.group({
+                name: ['', Validators.required],
+                address: ['', Validators.required],
+                phoneNumber: ['', Validators.required]
+            })
+        })
     }
-
+    submitCus() {
+        this.userProfile = this.customerForm.value.customer;
+    }
+    saveCustomer(){
+        if(this.customerForm.valid){
+            console.log(this.customerForm.value);
+        }else{
+            console.log('asdasdasdas');
+        }
+    }
 }

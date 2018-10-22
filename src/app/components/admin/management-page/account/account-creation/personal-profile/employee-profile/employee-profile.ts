@@ -1,5 +1,8 @@
 import { Component } from "@angular/core";
 import { AccountCreationPage } from "../../account-creation";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Role, UserProfile } from "../../../../../../interface/interface";
+import { AccountCreationService } from "../../account-creation.service";
 
 @Component({
     selector: 'employee-profile',
@@ -8,41 +11,36 @@ import { AccountCreationPage } from "../../account-creation";
 })
 
 export class EmployeeProfilePage {
-    constructor(private accCreation: AccountCreationPage) { }
-    employee: any;
+    employeeForm = new FormGroup({});
+    constructor(/*private accCreation: AccountCreationPage, */private formBuilder: FormBuilder, private a: AccountCreationService) { }
+    userProfile: UserProfile;
     fullname = '';
     address = '';
     phone = '';
     nationality = '';
-    gender = '';
+    role: Role;
+    genders: string[] = ['Nam', 'Nu'];
     nations = [
         { value: 'Viet Nam' },
         { value: 'USA' },
         { value: 'Singapore' }
     ];
     
-    validateEmplProf() {
-        var fullname = (document.getElementById('fullname') as HTMLInputElement).value;
-        var address = (document.getElementById('address') as HTMLInputElement).value;
-        var phone = (document.getElementById('phone') as HTMLInputElement).value;
-        var identification = (document.getElementById('identification') as HTMLInputElement).value;
-        var gender = this.gender;
-        var nationality = this.nationality;
-        if (fullname != '' && address != '' && phone != '' && gender != '' && nationality != '' && identification != '') {
-            this.accCreation.validateProfile(true);
-            this.employee = {name: fullname, address: address, phoneNumber: phone, nationality: nationality, gender: gender, identification: identification};
-        } else {
-            this.employee = undefined;
-            this.accCreation.validateProfile(false);
-        }
-        this.accCreation.setEmplProf(this.employee);
+    ngOnInit(){
+        console.log(this.role);
+        this.employeeForm = this.formBuilder.group({
+            employee: this.formBuilder.group({
+                name: ['', Validators.required],
+                address: ['', Validators.required],
+                phoneNumber: ['', Validators.required],
+                nationality: ['', Validators.required],
+                identification: ['', Validators.required],
+                gender: ['', Validators.required]
+            })
+        })
     }
-    selectGender(gender: any) {
-        this.gender = gender;
-        this.validateEmplProf();
+    submitEmpl(){
+        this.userProfile = this.employeeForm.value.employee;
     }
-    selectNation(nation: any) {
-        this.nationality = nation;
-        this.validateEmplProf();
-    }
+
 }
