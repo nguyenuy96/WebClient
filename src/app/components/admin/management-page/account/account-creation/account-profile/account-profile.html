@@ -3,24 +3,27 @@
         <p>
             <mat-form-field>
                 <mat-label>Tài khoản</mat-label>
-                <input matInput id="username" (input)="validateInput()" formControlName="username" required>
+                <input matInput id="username" formControlName="username" required placeholder="Tài khoản dài từ 6 - 18 ký tự">
+                <mat-error>Tài khoản dài hơn 6 ký tự</mat-error>
             </mat-form-field>
         </p>
         <p>
             <mat-form-field>
                 <mat-label>Mật khẩu</mat-label>
-                <input matInput type="password" id="password" formControlName="password" required>
+                <input matInput type="password" id="password" formControlName="password" required placeholder="Tài khoản dài từ 6 - 18 ký tự">
+                <mat-error>Mật khẩu dài hơn 6 ký tự</mat-error>
             </mat-form-field>
         </p>
         <p>
             <mat-form-field>
                 <mat-label>Mật khẩu xác nhận</mat-label>
-                <input matInput type="password" (input)="validateInput()" formControlName="retype_password" required>
+                <input matInput type="password" formControlName="retype_password" required>
+                <mat-error>Mật khẩu và mật khẩu xác nhận khác nhau</mat-error>
             </mat-form-field>
         </p>
     </div>
     <div>
         <button mat-button matStepperPrevious>Quay lại</button>
-        <button mat-button matStepperNext (click)="abc()">Next</button>
+        <button mat-button matStepperNext (click)="checkUsername()">Next</button>
     </div>
 </form>

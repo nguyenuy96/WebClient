@@ -53,6 +53,9 @@ export class AccountCreationPage {
             } else {
                 if (this.employeeProfilePage != undefined) {
                     this.userProfile = this.employeeProfilePage.userProfile;
+                    if(this.employeeProfilePage.userProfile != undefined && this.employeeProfilePage.employeeForm.valid){
+                        this.employeeProfilePage.userProfile.account = this.account;
+                    }
                 }
                 return this.employeeProfilePage ? this.employeeProfilePage.employeeForm : null;
             }

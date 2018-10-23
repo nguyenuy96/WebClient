@@ -25,7 +25,6 @@ import { ProductCatergory } from './components/store-view/category/category';
 import { _RequestHeader } from './services/header';
 import { RoleService } from './services/role.service';
 import { AccountService } from './components/admin/management-page/account/account-creation/account.service';
-import { LastStepComponent } from './components/admin/management-page/account/account-creation/last-step/last-step';
 import { AccountCreationService } from './components/admin/management-page/account/account-creation/account-creation.service';
 const appRoutes: Routes = [
     //user with manager or employee role view
@@ -75,7 +74,6 @@ const appRoutes: Routes = [
         ProductCatergory,
         ProductCategoryDetail,
         HomePage,
-        LastStepComponent,
     ],
     imports: [
         BrowserModule,

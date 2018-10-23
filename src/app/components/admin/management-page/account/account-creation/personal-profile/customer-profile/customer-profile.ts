@@ -4,6 +4,7 @@ import { AccountCreationPage } from "../../account-creation";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AccountCreationService } from "../../account-creation.service";
 import { AccountService } from "../../account.service";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
     selector: 'customer-profile',
@@ -11,7 +12,7 @@ import { AccountService } from "../../account.service";
     styleUrls: ['./customer-profile.css']
 })
 export class CustomerProfilePage {
-    constructor(private formBuilder: FormBuilder, private accountSrvc: AccountService) { }
+    constructor(private formBuilder: FormBuilder, private accountService: AccountService) { }
     userProfile: UserProfile;
     address = '';
     fullname = '';
@@ -31,9 +32,14 @@ export class CustomerProfilePage {
     }
     saveCustomer(){
         if(this.customerForm.valid){
-            console.log(this.customerForm.value);
-        }else{
-            console.log('asdasdasdas');
+            this.accountService.saveUser(this.customerForm.value.userProfile).subscribe(
+                response => {
+
+                },
+                (err: HttpErrorResponse) => {
+
+                }
+            )
         }
     }
 }

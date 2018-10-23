@@ -3,6 +3,8 @@ import { AccountCreationPage } from "../../account-creation";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Role, UserProfile } from "../../../../../../interface/interface";
 import { AccountCreationService } from "../../account-creation.service";
+import { AccountService } from "../../account.service";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
     selector: 'employee-profile',
@@ -12,7 +14,7 @@ import { AccountCreationService } from "../../account-creation.service";
 
 export class EmployeeProfilePage {
     employeeForm = new FormGroup({});
-    constructor(/*private accCreation: AccountCreationPage, */private formBuilder: FormBuilder, private a: AccountCreationService) { }
+    constructor(private formBuilder: FormBuilder, private accountService: AccountService) { }
     userProfile: UserProfile;
     fullname = '';
     address = '';
@@ -42,5 +44,16 @@ export class EmployeeProfilePage {
     submitEmpl(){
         this.userProfile = this.employeeForm.value.employee;
     }
+    saveCustomer(){
+        if(this.employeeForm.valid){
+            this.accountService.saveUser(this.employeeForm.value.userProfile).subscribe(
+                response => {
 
+                },
+                (err: HttpErrorResponse) => {
+
+                }
+            )
+        }
+    }
 }
