@@ -5,16 +5,20 @@ import { Role, UserProfile } from "../../../../../../interface/interface";
 import { AccountCreationService } from "../../account-creation.service";
 import { AccountService } from "../../account.service";
 import { HttpErrorResponse } from "@angular/common/http";
+import { EmployeePage } from "../../../employee/employee";
+import { UserService } from "../../../../../../../services/users.service";
+import { AccountPage } from "../../../account-page";
 
 @Component({
     selector: 'employee-profile',
     templateUrl: './employee-profile.html',
-    styleUrls: ['./employee-profile.css']
+    styleUrls: ['./employee-profile.css'],
+    providers: [EmployeePage, AccountPage]
 })
 
 export class EmployeeProfilePage {
     employeeForm = new FormGroup({});
-    constructor(private formBuilder: FormBuilder, private accountService: AccountService) { }
+    constructor(private formBuilder: FormBuilder, private accountService: AccountService, private employee: EmployeePage, private acc: AccountPage) { }
     userProfile: UserProfile;
     fullname = '';
     address = '';
@@ -27,8 +31,8 @@ export class EmployeeProfilePage {
         { value: 'USA' },
         { value: 'Singapore' }
     ];
-    
-    ngOnInit(){
+
+    ngOnInit() {
         console.log(this.role);
         this.employeeForm = this.formBuilder.group({
             employee: this.formBuilder.group({
@@ -41,14 +45,16 @@ export class EmployeeProfilePage {
             })
         })
     }
-    submitEmpl(){
+    submitEmpl() {
         this.userProfile = this.employeeForm.value.employee;
     }
-    saveCustomer(){
-        if(this.employeeForm.valid){
-            this.accountService.saveUser(this.employeeForm.value.userProfile).subscribe(
+    saveCustomer() {
+        this.userProfile = this.employeeForm.value.employee;
+        if (this.employeeForm.valid) {
+            this.accountService.saveUser(this.userProfile).subscribe(
                 response => {
-
+                    this.employee.ngOnInit();
+                    this.acc.ngOnInit();
                 },
                 (err: HttpErrorResponse) => {
 

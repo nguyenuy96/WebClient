@@ -8,4 +8,7 @@ import { SelectionModel } from "@angular/cdk/collections";
 })
 
 export class AccountPage {
+    ngOnInit(){
+        
+    }
 }

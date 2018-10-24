@@ -18,10 +18,11 @@ export interface AccountRole {
 })
 export class AccountProfilePage {
     isExisted = false;
-    constructor(private accountService: AccountService, private formBuilder: FormBuilder) {this.isExisted = false; }
+    constructor(private accountService: AccountService, private formBuilder: FormBuilder) { this.isExisted = false; }
     account: Account;
     role: Role;
     accountForm = new FormGroup({});
+    msg: string;
     ngOnInit() {
         this.isExisted = false;
         this.accountForm = this.formBuilder.group({
@@ -29,10 +30,10 @@ export class AccountProfilePage {
                 username: ['', Validators.compose([Validators.required, Validators.maxLength(18), Validators.minLength(6)])],
                 password: ['', Validators.compose([Validators.required, Validators.maxLength(18), Validators.minLength(6)])],
                 retype_password: ['', Validators.required]
-            }, { validator: this.MatchPassword})
-        },{validator: this.ValidUser})
+            }, { validator: this.MatchPassword })
+        }, { validator: this.ValidUser })
     }
-    CheckAccount(control: AbstractControl){
+    CheckAccount(control: AbstractControl) {
     }
     MatchPassword(control: AbstractControl) {
         let password = control.get('password').value;
@@ -43,13 +44,10 @@ export class AccountProfilePage {
             return null;
         }
     }
-    ValidUser(control: FormGroup, valid: boolean){
-        if(valid){
-            console.log('ok');
-            
-            control.get('account').get('username').setErrors({ValidUser: true})
-        }else{
-            console.log('faslse')
+    ValidUser(control: FormGroup, valid: boolean) {
+        if (valid) {
+            control.get('account').get('username').setErrors({ ValidUser: true })
+        } else {
             return null;
         }
     }
@@ -57,14 +55,18 @@ export class AccountProfilePage {
         this.account = this.accountForm.value.account;
     }
     checkUsername() {
-        console.log(this.accountForm.value.account.username);
-        this.accountService.checkAccount(this.accountForm.value.account.username).subscribe(
-            resp => {
-                this.ValidUser(this.accountForm, false);
-            },
-            (err: HttpErrorResponse) => {
-                this.ValidUser(this.accountForm, true);
-            }
-        )
+        if (this.accountForm.value.account.username != '') {
+
+            this.accountService.checkAccount(this.accountForm.value.account.username).subscribe(
+                resp => {
+                    this.ValidUser(this.accountForm, false);
+                    this.msg = undefined;
+                },
+                (err: HttpErrorResponse) => {
+                    this.msg = 'Tài khoản đã có người sử dụng';
+                    this.ValidUser(this.accountForm, true);
+                }
+            )
+        }
     }
 }

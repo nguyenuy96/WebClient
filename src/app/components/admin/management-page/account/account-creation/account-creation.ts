@@ -44,18 +44,14 @@ export class AccountCreationPage {
             if (this.role.account_role == 'Customer') {
                 if (this.customerProfilePage != undefined) {
                     this.userProfile = this.customerProfilePage.userProfile;
-                    if (this.customerProfilePage.userProfile != undefined && this.customerProfilePage.customerForm.valid) {
-                        this.customerProfilePage.userProfile.account = this.account;
-                    }
+                    this.customerProfilePage.customerForm.value.customer.account = this.account;
                 }
 
                 return this.customerProfilePage ? this.customerProfilePage.customerForm : null;
             } else {
                 if (this.employeeProfilePage != undefined) {
                     this.userProfile = this.employeeProfilePage.userProfile;
-                    if(this.employeeProfilePage.userProfile != undefined && this.employeeProfilePage.employeeForm.valid){
-                        this.employeeProfilePage.userProfile.account = this.account;
-                    }
+                    this.employeeProfilePage.employeeForm.value.employee.account = this.account;
                 }
                 return this.employeeProfilePage ? this.employeeProfilePage.employeeForm : null;
             }

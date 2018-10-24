@@ -11,6 +11,7 @@ export interface Trademark {
     name: string
 }
 @Component({
+    selector: 'add-product',
     templateUrl: './add-product.html',
     styleUrls: ['./add-product.css']
 })
@@ -38,4 +39,11 @@ export class AddProductComponent {
         { name: 'Nhựa chợ lớn' },
         { name: 'Nguyễn Hữu Úy' }
     ]
+
+
+    image: File;
+    onFileChange(event) {
+        this.image = event.target.files;
+        console.log(this.image)
+    }
 }

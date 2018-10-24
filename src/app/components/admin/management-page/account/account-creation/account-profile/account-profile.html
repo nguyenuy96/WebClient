@@ -3,8 +3,11 @@
         <p>
             <mat-form-field>
                 <mat-label>Tài khoản</mat-label>
-                <input matInput id="username" formControlName="username" required placeholder="Tài khoản dài từ 6 - 18 ký tự">
-                <mat-error>Tài khoản dài hơn 6 ký tự</mat-error>
+                <input matInput id="username" formControlName="username" required placeholder="Tài khoản dài từ 6 - 18 ký tự" (blur)="checkUsername()">
+                <mat-error *ngIf="msg !== undefined; else req">{{msg}}</mat-error>
+                <ng-template #req>
+                    <mat-error>Tài khoản dài 6-18 ký tự</mat-error>
+                </ng-template>
             </mat-form-field>
         </p>
         <p>
@@ -24,6 +27,6 @@
     </div>
     <div>
         <button mat-button matStepperPrevious>Quay lại</button>
-        <button mat-button matStepperNext (click)="checkUsername()">Next</button>
+        <button mat-button matStepperNext>Next</button>
     </div>
 </form>
