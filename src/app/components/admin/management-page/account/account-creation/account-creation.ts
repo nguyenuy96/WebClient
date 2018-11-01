@@ -44,14 +44,15 @@ export class AccountCreationPage {
             if (this.role.account_role == 'Customer') {
                 if (this.customerProfilePage != undefined) {
                     this.userProfile = this.customerProfilePage.userProfile;
-                    this.customerProfilePage.customerForm.value.customer.account = this.account;
+                    this.customerProfilePage.customerForm.value.account = this.account;
+                    //this.customerProfilePage.account = this.account;
                 }
 
                 return this.customerProfilePage ? this.customerProfilePage.customerForm : null;
             } else {
                 if (this.employeeProfilePage != undefined) {
                     this.userProfile = this.employeeProfilePage.userProfile;
-                    this.employeeProfilePage.employeeForm.value.employee.account = this.account;
+                    this.employeeProfilePage.employeeForm.value.account = this.account;
                 }
                 return this.employeeProfilePage ? this.employeeProfilePage.employeeForm : null;
             }

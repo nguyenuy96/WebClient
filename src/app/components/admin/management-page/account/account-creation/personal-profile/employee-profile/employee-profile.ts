@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { AccountCreationPage } from "../../account-creation";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Role, UserProfile } from "../../../../../../interface/interface";
+import { Role, UserProfile, Account } from "../../../../../../interface/interface";
 import { AccountCreationService } from "../../account-creation.service";
 import { AccountService } from "../../account.service";
 import { HttpErrorResponse } from "@angular/common/http";
@@ -25,6 +25,7 @@ export class EmployeeProfilePage {
     phone = '';
     nationality = '';
     role: Role;
+    account:Account;
     genders: string[] = ['Nam', 'Nu'];
     nations = [
         { value: 'Viet Nam' },
@@ -49,9 +50,10 @@ export class EmployeeProfilePage {
         this.userProfile = this.employeeForm.value.employee;
     }
     saveCustomer() {
-        this.userProfile = this.employeeForm.value.employee;
+        this.account = this.employeeForm.value.account;
+        this.account.employee = this.employeeForm.value.employee;
         if (this.employeeForm.valid) {
-            this.accountService.saveUser(this.userProfile).subscribe(
+            this.accountService.saveUser(this.account).subscribe(
                 response => {
                     this.employee.ngOnInit();
                     this.acc.ngOnInit();

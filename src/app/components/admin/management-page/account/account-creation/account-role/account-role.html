@@ -2,7 +2,7 @@
     <mat-form-field>
         <mat-select placeholder="Loại tài khoản" formControlName="role" required>
             <mat-option *ngFor="let role of listRole" [value]="role">
-                {{role.account_role}}
+                {{role.searchName}}
             </mat-option>
         </mat-select>
     </mat-form-field>

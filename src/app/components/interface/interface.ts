@@ -7,6 +7,8 @@ export interface Account {
     username: string;
     password: string;
     role: Role;
+    customer: Customer;
+    employee: Employee;
 }
 
 
@@ -15,7 +17,6 @@ export interface Customer {
     name: string;
     phoneNumber: string;
     address: string;
-    account: Account;
 }
 
 export interface Employee {
@@ -26,7 +27,6 @@ export interface Employee {
     gender: string;
     nationality: string;
     identification: string;
-    account: Account;
 }
 export interface UserProfile{
     id: number;

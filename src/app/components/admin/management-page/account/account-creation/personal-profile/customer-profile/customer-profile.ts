@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { Customer, UserProfile } from "../../../../../../interface/interface";
+import { Customer, UserProfile, Account } from "../../../../../../interface/interface";
 import { AccountCreationPage } from "../../account-creation";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AccountCreationService } from "../../account-creation.service";
@@ -21,6 +21,7 @@ export class CustomerProfilePage {
     fullname = '';
     phone = '';
     customerForm: FormGroup;
+    account: Account;
     ngOnInit() {
         this.customerForm = this.formBuilder.group({
             customer: this.formBuilder.group({
@@ -34,9 +35,10 @@ export class CustomerProfilePage {
         this.userProfile = this.customerForm.value.customer;
     }
     saveCustomer(){
+        this.account = this.customerForm.value.account;
+        this.account.customer = this.customerForm.value.customer;
         if(this.customerForm.valid){
-            this.userProfile = this.customerForm.value.customer;
-            this.accountService.saveUser(this.userProfile).subscribe(
+            this.accountService.saveUser(this.account).subscribe(
                 response => {
                     this.customer.dataSource = undefined;
                     this.customer.ngOnInit();
