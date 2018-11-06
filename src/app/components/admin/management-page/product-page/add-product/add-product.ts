@@ -1,15 +1,8 @@
 import { Component } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
-export interface Category {
-    name: string;
-}
-
-export interface Inventory {
-    name: string;
-}
-export interface Trademark {
-    name: string
-}
+import { ProductType, TradeMark } from "../../../../interface/interface";
+import { ProductService } from "../../../../../services/product/product.service";
+import { HttpErrorResponse } from "@angular/common/http";
 @Component({
     selector: 'add-product',
     templateUrl: './add-product.html',
@@ -17,33 +10,47 @@ export interface Trademark {
 })
 
 export class AddProductComponent {
-    categories: Category[] = [
-        { name: 'Sữa em bé' },
-        { name: 'Quần áo sơ sinh' },
-        { name: 'Sữa mẹ' },
-        { name: 'Quần áo trẻ nhỏ' },
-        { name: 'Dụng cụ vệ sinh cho bé' },
-        { name: 'Tã lót em bé' },
-        { name: 'Dụng cụ cho bé ăn' },
-    ];
-    inventories: Inventory[] = [
-        { name: 'Thành Phố Hồ Chí Minh' },
-        { name: 'Đà Nẵng' },
-        { name: 'Hà Nội' },
-        { name: 'Cần Thơ' }
-    ];
-    trademarks: Trademark[] = [
-        { name: 'Dielac' },
-        { name: 'Friso' },
-        { name: 'Vinamilk' },
-        { name: 'Nhựa chợ lớn' },
-        { name: 'Nguyễn Hữu Úy' }
-    ]
 
 
+
+
+    constructor(private productService: ProductService) { }
+    productTypes: ProductType[];
+    tradeMarks: TradeMark[];
     image: File;
+
+    ngOnInit(){
+        this.getProductTypes();
+        this.getTradeMarks();
+    }
     onFileChange(event) {
         this.image = event.target.files;
         console.log(this.image)
     }
+
+    getProductTypes() {
+        this.productService.getProductTypes().subscribe(
+            resp => {
+                this.productTypes = resp.body;
+                console.log(this.productTypes)
+            },
+            (errMsg: HttpErrorResponse) => {
+
+            }
+        )
+    }
+
+    getTradeMarks() {
+        this.productService.getTradeMarks().subscribe(
+            resp => {
+                this.tradeMarks = resp.body;
+                console.log(this.tradeMarks)
+            },
+            (errMsg: HttpErrorResponse) => {
+
+            }
+        )
+    }
+
+
 }

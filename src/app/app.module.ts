@@ -27,6 +27,8 @@ import { RoleService } from './services/role.service';
 import { AccountService } from './components/admin/management-page/account/account-creation/account.service';
 import { AccountCreationService } from './components/admin/management-page/account/account-creation/account-creation.service';
 import { UserService } from './services/users.service';
+import { RestAPI } from './services/rest-api';
+import { ProductService } from './services/product/product.service';
 const appRoutes: Routes = [
     //user with manager or employee role view
     {
@@ -86,7 +88,7 @@ const appRoutes: Routes = [
         MaterialModule,
         FormsModule, ReactiveFormsModule
     ],
-    providers: [_RequestHeader, RoleService, FormBuilder, AccountService, AccountCreationPage,UserService],
+    providers: [_RequestHeader, RoleService, FormBuilder, AccountService, AccountCreationPage,UserService, ProductService, RestAPI],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

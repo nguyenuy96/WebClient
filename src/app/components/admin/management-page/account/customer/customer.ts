@@ -12,7 +12,7 @@ import { UserService } from "../../../../../services/users.service";
 
 export class CustomerPage {
     constructor(private userService: UserService){}
-    displayedColumns: string[] = ['id', 'phone', 'fullname', 'address'];
+    displayedColumns: string[] = ['customerId', 'name', 'phoneNumber', 'address'];
     dataSource:any;
     selection: any;
     customers: Customer[];
@@ -24,8 +24,6 @@ export class CustomerPage {
                 this.customers = resp.body;
                 this.dataSource = new MatTableDataSource<Customer>(this.customers);
                 this.selection = new SelectionModel<Customer>(true, []);
-                console.log(this.dataSource);
-                console.log(this.selection)
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
             }

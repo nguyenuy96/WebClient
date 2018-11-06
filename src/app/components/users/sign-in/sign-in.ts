@@ -37,7 +37,7 @@ export class SignInComponent {
                 var account = JSON.stringify(this.user);
                 sessionStorage.setItem('user', account);
                 this.homePage.ngOnInit();
-                if (this.user.accountRole.account_role == "Customer") {
+                if (this.user.role.searchName == "Customer") {
                     this.router.navigate([{ outlets: { home: ['store-page'] } }]);
                 } else {
                     this.router.navigate([{ outlets: { home: ['admin-page'] } }]);

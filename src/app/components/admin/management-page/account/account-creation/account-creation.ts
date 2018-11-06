@@ -41,13 +41,12 @@ export class AccountCreationPage {
     }
     get profileForm() {
         if (this.role != undefined) {
-            if (this.role.account_role == 'Customer') {
+            if (this.role.roleName == 'Customer') {
                 if (this.customerProfilePage != undefined) {
                     this.userProfile = this.customerProfilePage.userProfile;
                     this.customerProfilePage.customerForm.value.account = this.account;
                     //this.customerProfilePage.account = this.account;
                 }
-
                 return this.customerProfilePage ? this.customerProfilePage.customerForm : null;
             } else {
                 if (this.employeeProfilePage != undefined) {

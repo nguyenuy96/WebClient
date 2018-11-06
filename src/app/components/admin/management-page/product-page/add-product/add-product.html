@@ -14,27 +14,18 @@
     </p>
     <p>
         <mat-form-field style="width: 20%">
-            <mat-select placeholder="Thương hiệu*">
-                <mat-option *ngFor="let trademark of trademarks" [value]="trademark.name">
-                    {{trademark.name}}
+            <mat-select placeholder="Thương hiệu">
+                <mat-option *ngFor="let trademark of tradeMarks" [value]="trademark">
+                    {{trademark.tradeMark}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
     </p>
     <p>
         <mat-form-field style="width: 25%">
-            <mat-select placeholder="Mặt hàng *">
-                <mat-option *ngFor="let category of categories" [value]="category.name">
-                    {{category.name}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field style="width: 25%">
-            <mat-select placeholder="Kho hàng *">
-                <mat-option *ngFor="let inventory of inventories" [value]="inventory.name">
-                    {{inventory.name}}
+            <mat-select placeholder="Mặt hàng">
+                <mat-option *ngFor="let category of productTypes" [value]="category">
+                    {{category.productType}}
                 </mat-option>
             </mat-select>
         </mat-form-field>

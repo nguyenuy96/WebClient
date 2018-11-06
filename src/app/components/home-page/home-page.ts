@@ -18,7 +18,7 @@ export class HomePage {
         this.isLogined = account == undefined ? false : true;
         if (this.isLogined) {
             this.account = JSON.parse(account);
-            if (this.account.accountRole.account_role == "Customer") {
+            if (this.account.role.searchName == "Customer") {
                 this.router.navigate([{ outlets: { home: ['store-page'] } }]);
             } else {
                 this.router.navigate([{ outlets: { home: ['admin-page'] } }]);

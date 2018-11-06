@@ -17,7 +17,7 @@
             <ng-template matStepLabel>Thông tin cá nhân</ng-template>
             <mat-card style="width: 35%; margin: auto">
                 <h2 style="text-align: center">Thông tin cá nhân</h2>
-                <div *ngIf="role.account_role === 'Customer'; else administrator">
+                <div *ngIf="role.roleName === 'Customer'; else administrator">
                     <customer-profile></customer-profile>
                 </div>
                 <ng-template #administrator>
