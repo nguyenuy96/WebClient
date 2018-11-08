@@ -1,0 +1,76 @@
+<div mat-dialog-content>
+    <h2>
+        <p>
+            <mat-label cdkFocusInitial>
+                <b>Chỉnh sửa sản phẩm</b>
+            </mat-label>
+        </p>
+    </h2>
+    <p>
+        <mat-form-field>
+            <input matInput placeholder="Tên sản phẩm" [value]="product.productName">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field>
+            <label style="font-size: 12px">Loại hàng</label>
+            <mat-select [(ngModel)]="tradeMark">
+                <mat-option *ngFor="let trademark of tradeMarks" [value]="trademark.tradeMark">
+                    {{trademark.tradeMark}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field>
+            <mat-select [(ngModel)]="prodCategory">
+                <mat-option *ngFor="let category of productTypes" [value]="category.productType">
+                    {{category.productType}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field>
+            <mat-select placeholder="Độ tuổi">
+                <mat-option *ngFor="let category of productTypes" [value]="category">
+                    {{category.productType}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field>
+            <mat-select placeholder="Cân nặng">
+                <mat-option *ngFor="let category of productTypes" [value]="category">
+                    {{category.productType}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field>
+            <mat-label>Số lượng</mat-label>
+            <input matInput>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field>
+            <mat-label>Đơn giá (VND)</mat-label>
+            <input matInput>
+        </mat-form-field>
+    </p>
+    <mat-form-field>
+        <mat-label>Mô tả</mat-label>
+        <textarea matInput placeholder="Mô tả ..." style="height: 200px;"></textarea>
+
+    </mat-form-field>
+    <form novalidate>
+        <input type="file" (change)="onFileChange($event)" />
+        <button type="submit">Submit</button>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button>No Thanks</button>
+    <button mat-button [mat-dialog-close]>Ok</button>
+</div>

@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
-import { ProductType, TradeMark } from "../../../../interface/interface";
+import { ProductType, TradeMark, Age, Weight } from "../../../../interface/interface";
 import { ProductService } from "../../../../../services/product/product.service";
 import { HttpErrorResponse } from "@angular/common/http";
 @Component({
@@ -18,7 +18,8 @@ export class AddProductComponent {
     productTypes: ProductType[];
     tradeMarks: TradeMark[];
     image: File;
-
+    age: Age[];
+    weight: Weight[]
     ngOnInit(){
         this.getProductTypes();
         this.getTradeMarks();
@@ -32,7 +33,6 @@ export class AddProductComponent {
         this.productService.getProductTypes().subscribe(
             resp => {
                 this.productTypes = resp.body;
-                console.log(this.productTypes)
             },
             (errMsg: HttpErrorResponse) => {
 
@@ -44,7 +44,6 @@ export class AddProductComponent {
         this.productService.getTradeMarks().subscribe(
             resp => {
                 this.tradeMarks = resp.body;
-                console.log(this.tradeMarks)
             },
             (errMsg: HttpErrorResponse) => {
 

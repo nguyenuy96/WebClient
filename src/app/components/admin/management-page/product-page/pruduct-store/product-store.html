@@ -1,0 +1,29 @@
+<mat-card>
+    <p>
+        <mat-form-field style="width: 25%">
+            <mat-select placeholder="Sản phẩm">
+                <mat-option *ngFor="let product of products" [value]="product">
+                    {{product.productName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field style="width: 25%">
+            <mat-select placeholder="Chi nhánh">
+                <mat-option *ngFor="let warehouse of warehouses" [value]="warehouse">
+                    {{warehouse.warehouseName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field style="width: 10%">
+            <mat-label>Số lượng</mat-label>
+            <input matInput>
+        </mat-form-field>
+    </p>
+    <p>
+        <button mat-raised-button color="primary">Xác nhận</button>
+    </p>
+</mat-card>

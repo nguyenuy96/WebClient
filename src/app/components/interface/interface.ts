@@ -71,6 +71,11 @@ export interface Image {
     imageId: number,
     imageName: string
 }
+
+export interface Warehouse {
+    warehouseId: number;
+    warehouseName: string;
+}
 export interface Product {
     productId: number,
     productName: string,

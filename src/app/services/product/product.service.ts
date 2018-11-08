@@ -3,7 +3,7 @@ import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { _RequestHeader } from "../header";
 import { RestAPI } from "../rest-api";
-import { Product, TradeMark, ProductType } from "../../components/interface/interface";
+import { Product, TradeMark, ProductType, Weight, Age, Warehouse } from "../../components/interface/interface";
 
 @Injectable()
 export class ProductService {
@@ -25,6 +25,18 @@ export class ProductService {
 
     getProductTypes(): Observable<HttpResponse<ProductType[]>> {
         return this.httpClient.get<ProductType[]>(this.restAPI.getProductTypeUrl, { headers: this.requestHeader.httpHeader, observe: 'response' });
+    }
+
+    getAges(): Observable<HttpResponse<Age[]>> {
+        return this.httpClient.get<Age[]>(this.restAPI.getProductTypeUrl, { headers: this.requestHeader.httpHeader, observe: 'response' });
+    }
+
+    getWeight():Observable<HttpResponse<Weight[]>> {
+        return this.httpClient.get<Weight[]>(this.restAPI.getProductTypeUrl, { headers: this.requestHeader.httpHeader, observe: 'response' });
+    }
+
+    getWarehouse():Observable<HttpResponse<Warehouse[]>> {
+        return this.httpClient.get<Warehouse[]>(this.restAPI.getWarehouseUrl, { headers: this.requestHeader.httpHeader, observe: 'response' });
     }
 }
 
