@@ -1,57 +1,71 @@
-<mat-card>
-    <h2>
-        <p>
-            <mat-label>
-                <b>Thông tin sản phẩm</b>
-            </mat-label>
-        </p>
-    </h2>
-    <p>
-        <mat-form-field style="width: 50%">
-            <mat-label>Tên sản phẩm *</mat-label>
-            <input matInput>
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field style="width: 20%">
-            <mat-select placeholder="Thương hiệu">
-                <mat-option *ngFor="let trademark of tradeMarks" [value]="trademark">
-                    {{trademark.tradeMark}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field style="width: 25%">
-            <mat-select placeholder="Mặt hàng">
-                <mat-option *ngFor="let category of productTypes" [value]="category">
-                    {{category.productType}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field style="width: 10%">
-            <mat-label>Số lượng</mat-label>
-            <input matInput>
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field style="width: 15%">
-            <mat-label>Đơn giá (VND)</mat-label>
-            <input matInput>
-        </mat-form-field>
-    </p>
-    <mat-form-field style="width: 70%; height: 200px;">
-        <mat-label>Mô tả</mat-label>
-        <textarea matInput placeholder="Mô tả ..." style="height: 200px;"></textarea>
+<mat-card style="width: 60%; margin: auto">
+    <div style="width: 80%; margin:  auto; align-items: center; text-align: center;">
+        <div style="display: flex;
+        flex-wrap: wrap;">
+            <div style="width: 30%;position: absolute; left: 5%; top: 7%;">
+                <img class="image" src="./../../assets/img/dielac-alpha-gold-IQ.jpg" style="width: 100%; height: 100%;" (click) ="openImage()">
+            </div>
+            <div style="margin-left: 35%; padding-top: 0; width: 70%;">
+                <p>
+                    <mat-form-field>
+                        <mat-label>Tên sản phẩm</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field style="width: 45%;">
+                        <mat-select placeholder="Mặt hàng">
+                            <mat-option *ngFor="let category of productTypes" [value]="category">
+                                {{category.productType}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field style="width: 45%; margin-left: 10%">
+                        <mat-select placeholder="Thương hiệu">
+                            <mat-option *ngFor="let trademark of tradeMarks" [value]="trademark">
+                                {{trademark.tradeMark}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field style="width: 45%">
+                        <mat-select placeholder="Độ tuổi">
+                            <mat-option *ngFor="let category of productTypes" [value]="category">
+                                {{category.productType}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field style="width: 45%; margin-left: 10%">
+                        <mat-select placeholder="Cân nặng">
+                            <mat-option *ngFor="let category of productTypes" [value]="category">
+                                {{category.productType}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field style="width: 45%">
+                        <mat-label>Số lượng</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+                    <mat-form-field style="width: 45%; margin-left: 10%">
+                        <mat-label>Đơn giá (VND)</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+                </p>
+            </div>
+        </div>
+        <mat-form-field style="height: 200px;">
+            <mat-label>Mô tả</mat-label>
+            <textarea matInput placeholder="Mô tả ..." style="height: 200px;"></textarea>
 
-    </mat-form-field>
-    <form novalidate style="margin-top: 50px">
-        <input type="file" (change)="onFileChange($event)"/>
-        <button type="submit">Submit</button>
-    </form>
-    <p>
-        <button mat-raised-button color="primary">Xác nhận</button>
-    </p>
+        </mat-form-field>
+        <form novalidate style="margin-top: 50px">
+            <input type="file" (change)="onFileChange($event)" />
+        </form>
+        <p>
+            <button mat-raised-button color="primary">Xác nhận</button>
+        </p>
+    </div>
 </mat-card>

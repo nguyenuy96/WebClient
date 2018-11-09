@@ -29,6 +29,9 @@ export class AddProductComponent {
         console.log(this.image)
     }
 
+    openImage(){
+        console.log('ádadasd');
+    }
     getProductTypes() {
         this.productService.getProductTypes().subscribe(
             resp => {

@@ -11,10 +11,14 @@
             <input matInput placeholder="Tên sản phẩm" [value]="product.productName">
         </mat-form-field>
     </p>
+
+    <form novalidate style="width: 100%; height: 10%;">
+        <input mat-input type="file" (change)="onFileChange($event)" />
+        <button mat-button type="submit" color="primary">Submit</button>
+    </form>
     <p>
         <mat-form-field>
-            <label style="font-size: 12px">Loại hàng</label>
-            <mat-select [(ngModel)]="tradeMark">
+            <mat-select [(ngModel)]="tradeMark" placeholder="Thương hiệu">
                 <mat-option *ngFor="let trademark of tradeMarks" [value]="trademark.tradeMark">
                     {{trademark.tradeMark}}
                 </mat-option>
@@ -23,7 +27,7 @@
     </p>
     <p>
         <mat-form-field>
-            <mat-select [(ngModel)]="prodCategory">
+            <mat-select [(ngModel)]="prodCategory" placeholder="Loại hàng">
                 <mat-option *ngFor="let category of productTypes" [value]="category.productType">
                     {{category.productType}}
                 </mat-option>
@@ -32,7 +36,7 @@
     </p>
     <p>
         <mat-form-field>
-            <mat-select placeholder="Độ tuổi">
+            <mat-select placeholder="Độ tuổi" placeholder="Độ tuổi">
                 <mat-option *ngFor="let category of productTypes" [value]="category">
                     {{category.productType}}
                 </mat-option>
@@ -41,7 +45,7 @@
     </p>
     <p>
         <mat-form-field>
-            <mat-select placeholder="Cân nặng">
+            <mat-select placeholder="Cân nặng" placeholder="Cân nặng">
                 <mat-option *ngFor="let category of productTypes" [value]="category">
                     {{category.productType}}
                 </mat-option>
@@ -65,10 +69,6 @@
         <textarea matInput placeholder="Mô tả ..." style="height: 200px;"></textarea>
 
     </mat-form-field>
-    <form novalidate>
-        <input type="file" (change)="onFileChange($event)" />
-        <button type="submit">Submit</button>
-    </form>
 </div>
 <div mat-dialog-actions>
     <button mat-button>No Thanks</button>
