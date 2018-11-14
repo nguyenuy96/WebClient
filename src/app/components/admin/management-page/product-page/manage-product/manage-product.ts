@@ -29,6 +29,7 @@ export class ManageProductComponent {
                 this.dataSource.paginator = this.paginator;
                 this.paginator._intl.itemsPerPageLabel = "Sản phẩm/trang";
                 this.dataSource.sort = this.sort;
+                console.log(resp.body)
             }
         )
     }

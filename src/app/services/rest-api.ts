@@ -6,4 +6,6 @@ export class RestAPI {
     getWarehouseUrl = "http://localhost:8888/warehouse/list";
     getWeightUrl = "http://localhost:8888/weight/list";
     getAgeUrl = "http://localhost:8888/age/list";
+    saveImageUrl = "http://localhost:8888/image/save";
+    imageUrl = "http://localhost:8888/images/";
 }

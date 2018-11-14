@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpResponse } from "@angular/common/http";
+import { HttpClient, HttpResponse, HttpEvent, HttpRequest } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { _RequestHeader } from "../header";
 import { RestAPI } from "../rest-api";
-import { Product, TradeMark, ProductType, Weight, Age, Warehouse } from "../../components/interface/interface";
+import { Product, TradeMark, ProductType, Weight, Age, Warehouse, Image } from "../../components/interface/interface";
 
 @Injectable()
 export class ProductService {
@@ -31,12 +31,18 @@ export class ProductService {
         return this.httpClient.get<Age[]>(this.restAPI.getProductTypeUrl, { headers: this.requestHeader.httpHeader, observe: 'response' });
     }
 
-    getWeight():Observable<HttpResponse<Weight[]>> {
+    getWeight(): Observable<HttpResponse<Weight[]>> {
         return this.httpClient.get<Weight[]>(this.restAPI.getProductTypeUrl, { headers: this.requestHeader.httpHeader, observe: 'response' });
     }
 
-    getWarehouse():Observable<HttpResponse<Warehouse[]>> {
+    getWarehouse(): Observable<HttpResponse<Warehouse[]>> {
         return this.httpClient.get<Warehouse[]>(this.restAPI.getWarehouseUrl, { headers: this.requestHeader.httpHeader, observe: 'response' });
+    }
+
+    saveImage(file: File): Observable<HttpResponse<Image>> {
+        const formData: FormData = new FormData();
+        formData.append('file', file);
+        return this.httpClient.post<Image>(this.restAPI.saveImageUrl, formData, { headers: this.requestHeader.imageHeader, observe: 'response' });
     }
 }
 
