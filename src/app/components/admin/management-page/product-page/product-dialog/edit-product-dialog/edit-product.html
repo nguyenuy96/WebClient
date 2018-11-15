@@ -12,51 +12,62 @@
             <input type="file" (change)="uploadImage($event)" />
         </label>
     </p>
-    <p>
-        <mat-form-field style="width: 70%; margin-top: 0%">
-            <input matInput placeholder="Tên sản phẩm" [value]="product.productName">
-        </mat-form-field>
-    </p>
-    <p>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <p>
+            <mat-form-field style="width: 70%; margin-top: 0%">
+                <input matInput placeholder="Tên sản phẩm" formControlName="productName">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <mat-select formControlName="productType" placeholder="Loại hàng">
+                    <mat-option *ngFor="let category of productTypes" [value]="category.productType">
+                        {{category.productType}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <mat-select formControlName="tradeMark" placeholder="Loại hàng">
+                    <mat-option *ngFor="let tradeMark of tradeMarks" [value]="tradeMark.tradeMark">
+                        {{tradeMark.tradeMark}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <mat-select placeholder="Độ tuổi" formControlName="productType" [(value)]="product.productType">
+                    <mat-option *ngFor="let category of productTypes" [value]="category">
+                        {{category.productType}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <mat-select placeholder="Cân nặng" placeholder="Cân nặng" formControlName="productType">
+                    <mat-option *ngFor="let category of productTypes" [value]="category">
+                        {{category.productType}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <mat-label>Đơn giá (VND)</mat-label>
+                <input matInput>
+            </mat-form-field>
+        </p>
         <mat-form-field>
-            <mat-select [(ngModel)]="prodCategory" placeholder="Loại hàng">
-                <mat-option *ngFor="let category of productTypes" [value]="category.productType">
-                    {{category.productType}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field>
-            <mat-select placeholder="Độ tuổi" placeholder="Độ tuổi">
-                <mat-option *ngFor="let category of productTypes" [value]="category">
-                    {{category.productType}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field>
-            <mat-select placeholder="Cân nặng" placeholder="Cân nặng">
-                <mat-option *ngFor="let category of productTypes" [value]="category">
-                    {{category.productType}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field>
-            <mat-label>Đơn giá (VND)</mat-label>
-            <input matInput>
-        </mat-form-field>
-    </p>
-    <mat-form-field>
-        <mat-label>Mô tả</mat-label>
-        <textarea matInput placeholder="Mô tả ..." style="height: 200px;"></textarea>
+            <mat-label>Mô tả</mat-label>
+            <textarea matInput placeholder="Mô tả ..." style="height: 200px;"></textarea>
 
-    </mat-form-field>
+        </mat-form-field>
+    </form>
 </div>
 <div mat-dialog-actions align="end">
     <button mat-button (click)="onNoClick()">Trở lại</button>
-    <button mat-button [mat-dialog-close] (click) = "modifyProduct()">Lưu lại</button>
+    <button mat-button [mat-dialog-close] (click)="onSubmit()">Lưu lại</button>
 </div>

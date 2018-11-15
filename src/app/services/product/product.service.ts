@@ -19,24 +19,35 @@ export class ProductService {
         });
     }
 
+    getTradeMark(tradeMarkId: number):Observable<HttpResponse<TradeMark>> {
+        let url = 'http://localhost:8888/trademark/getByName/{tradeMarkId}';
+        return this.httpClient.get<TradeMark>(url, {headers: this.requestHeader.httpHeader, observe: 'response'});
+    }
+
+    getTradeMarkByName(tradeMark: string): Observable<HttpResponse<TradeMark>>{
+        let url = this.restAPI.labelByNameUrl + `${tradeMark}`;
+        console.log(url);
+        return this.httpClient.get<TradeMark>(url, {headers: this.requestHeader.httpHeader, observe: 'response'});
+    }
+
     getTradeMarks(): Observable<HttpResponse<TradeMark[]>> {
-        return this.httpClient.get<TradeMark[]>(this.restAPI.getTradeMarkUrl, { headers: this.requestHeader.httpHeader, observe: 'response' });
+        return this.httpClient.get<TradeMark[]>(this.restAPI.listTradeMarkUrl, { headers: this.requestHeader.httpHeader, observe: 'response' });
     }
 
     getProductTypes(): Observable<HttpResponse<ProductType[]>> {
-        return this.httpClient.get<ProductType[]>(this.restAPI.getProductTypeUrl, { headers: this.requestHeader.httpHeader, observe: 'response' });
+        return this.httpClient.get<ProductType[]>(this.restAPI.listProductTypeUrl, { headers: this.requestHeader.httpHeader, observe: 'response' });
     }
 
     getAges(): Observable<HttpResponse<Age[]>> {
-        return this.httpClient.get<Age[]>(this.restAPI.getProductTypeUrl, { headers: this.requestHeader.httpHeader, observe: 'response' });
+        return this.httpClient.get<Age[]>(this.restAPI.listAgeUrl, { headers: this.requestHeader.httpHeader, observe: 'response' });
     }
 
     getWeight(): Observable<HttpResponse<Weight[]>> {
-        return this.httpClient.get<Weight[]>(this.restAPI.getProductTypeUrl, { headers: this.requestHeader.httpHeader, observe: 'response' });
+        return this.httpClient.get<Weight[]>(this.restAPI.listWeightUrl, { headers: this.requestHeader.httpHeader, observe: 'response' });
     }
 
     getWarehouse(): Observable<HttpResponse<Warehouse[]>> {
-        return this.httpClient.get<Warehouse[]>(this.restAPI.getWarehouseUrl, { headers: this.requestHeader.httpHeader, observe: 'response' });
+        return this.httpClient.get<Warehouse[]>(this.restAPI.listWarehouseUrl, { headers: this.requestHeader.httpHeader, observe: 'response' });
     }
 
     saveImage(file: File): Observable<HttpResponse<Image>> {

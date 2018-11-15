@@ -31,6 +31,7 @@ import { RestAPI } from './services/rest-api';
 import { ProductService } from './services/product/product.service';
 import { ProductStore } from './components/admin/management-page/product-page/pruduct-store/product-store';
 import { EditProductDialog } from './components/admin/management-page/product-page/product-dialog/edit-product-dialog/edit-product';
+import { StoreProductDialog } from './components/admin/management-page/product-page/product-dialog/store-product-dialog/store-product';
 const appRoutes: Routes = [
     //user with manager or employee role view
     {
@@ -80,7 +81,8 @@ const appRoutes: Routes = [
         ProductCategoryDetail,
         HomePage,
         ProductStore,
-        EditProductDialog
+        EditProductDialog,
+        StoreProductDialog
     ],
 
     imports: [
@@ -93,7 +95,7 @@ const appRoutes: Routes = [
         MaterialModule,
         FormsModule, ReactiveFormsModule
     ],
-    entryComponents: [EditProductDialog],
+    entryComponents: [EditProductDialog, StoreProductDialog],
     providers: [_RequestHeader, RoleService, FormBuilder, AccountService, AccountCreationPage, UserService, ProductService, RestAPI],
     bootstrap: [AppComponent]
 })

@@ -1,0 +1,32 @@
+<div mat-dialog-content>
+    <h2>
+        <p>
+            Nhập kho
+        </p>
+    </h2>
+
+    <h3 cdkFocusInitial style="width: 100%;">
+        <p>
+            {{data.productName}}</p>
+    </h3>
+
+    <p>
+        <mat-form-field>
+            <mat-select placeholder="Chi nhánh">
+                <mat-option *ngFor="let warehouse of warehouses" [value]="warehouse">
+                    {{warehouse.warehouseName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field>
+            <mat-label>Số lượng</mat-label>
+            <input matInput>
+        </mat-form-field>
+    </p>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button (click)="onNoClick()">Trở lại</button>
+    <button mat-button [mat-dialog-close] (click)="saveStorageReceipt()">Lưu lại</button>
+</div>

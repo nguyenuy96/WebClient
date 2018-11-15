@@ -4,6 +4,7 @@ import { SelectionModel } from "@angular/cdk/collections";
 import { Product } from "../../../../interface/interface";
 import { ProductService } from "../../../../../services/product/product.service";
 import { EditProductDialog } from "../product-dialog/edit-product-dialog/edit-product";
+import { StoreProductDialog } from "../product-dialog/store-product-dialog/store-product";
 
 @Component({
     templateUrl: './manage-product.html',
@@ -27,9 +28,8 @@ export class ManageProductComponent {
                 this.dataSource = new MatTableDataSource<Product>(this.products);
                 this.selection = new SelectionModel<Product>(true, []);
                 this.dataSource.paginator = this.paginator;
-                this.paginator._intl.itemsPerPageLabel = "Sản phẩm/trang";
+                // this.paginator._intl.itemsPerPageLabel = "Sản phẩm/trang";
                 this.dataSource.sort = this.sort;
-                console.log(resp.body)
             }
         )
     }
@@ -47,9 +47,10 @@ export class ManageProductComponent {
         });
     }
 
-    storeProduct(): void {
-        const dialogRef = this.dialog.open(EditProductDialog, {
-            width: '250px',
+    storeProduct(product: Product): void {
+        const dialogRef = this.dialog.open(StoreProductDialog, {
+            width: '20%',
+            data: product
         });
 
         dialogRef.afterClosed().subscribe(result => {

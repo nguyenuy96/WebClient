@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { ProductService } from "../../../../../../services/product/product.service";
 import { HttpErrorResponse, HttpEventType } from "@angular/common/http";
 import { RestAPI } from "../../../../../../services/rest-api";
+import { FormGroup, FormBuilder } from "@angular/forms";
 
 @Component({
     selector: 'edit-product-dialog',
@@ -12,7 +13,7 @@ import { RestAPI } from "../../../../../../services/rest-api";
 })
 
 export class EditProductDialog {
-    constructor(public dialogRef: MatDialogRef<EditProductDialog>, @Inject(MAT_DIALOG_DATA) public data: Product, private productService: ProductService, private restAPI: RestAPI) { }
+    constructor(private formBuilder: FormBuilder, public dialogRef: MatDialogRef<EditProductDialog>, @Inject(MAT_DIALOG_DATA) public data: Product, private productService: ProductService, private restAPI: RestAPI) { }
     product: Product;
     productTypes: ProductType[];
     tradeMarks: TradeMark[];
@@ -22,8 +23,10 @@ export class EditProductDialog {
     imageFile: File;
     imageUrl: string;
     image: Image;
+    productForm: FormGroup;
     ngOnInit() {
         this.product = this.data;
+        console.log(this.product)
         this.getProductTypes();
         this.getTradeMarks();
         this.tradeMark = this.product.tradeMark.tradeMark;
@@ -32,6 +35,19 @@ export class EditProductDialog {
             this.imageUrl = this.restAPI.imageUrl + this.product.image.imageName;
         else
             this.imageUrl = "..."
+        this.initForm();
+    }
+
+    initForm() {
+        this.productForm = this.formBuilder.group({
+            productName: [this.product.productName],
+            productType: [this.product.productType.productType],
+            tradeMark: [this.product.tradeMark.tradeMark],
+            weight: [''],
+            age: [''],
+            unitPrice: [''],
+            desciption: ['']
+        })
     }
 
     getProductTypes() {
@@ -56,6 +72,35 @@ export class EditProductDialog {
         )
     }
 
+    listAge(){
+    }
+
+    getTradeMark(){
+        this.productService.getTradeMark(1).subscribe(
+            resp => {
+                console.log(resp.body);
+            },
+            (errMsg: HttpErrorResponse) => {
+                console.log('adsf')
+            }
+        )
+    }
+
+    getTradeMarkByName(){
+        var tradeMark = this.productForm.value.tradeMark;
+        console.log(tradeMark);
+        this.productService.getTradeMarkByName(tradeMark).subscribe(
+            resp => {
+                console.log(resp.body);
+            },
+            (errMsg: HttpErrorResponse) => {
+                console.log('sd');
+            }
+        )
+    }
+    onSelectProType(proType: ProductType){
+        console.log(proType);
+    }
     uploadImage(event) {
         this.selectedFiles = event.target.files;
         this.imageFile = this.selectedFiles.item(0);
@@ -79,12 +124,16 @@ export class EditProductDialog {
     modifyProduct() {
         this.product.image = this.image;
         this.productService.saveProduct(this.product).subscribe(resp => {
-            console.log("Modify Successfully!")
             this.data = this.product;
         },
-        (errMesg: HttpErrorResponse) => {
-            console.log("Modify Fail")
-        }
-    )
+            (errMesg: HttpErrorResponse) => {
+            }
+        )
+    }
+
+    onSubmit(){
+        console.log(this.productForm.value);
+        
+        this.getTradeMarkByName();
     }
 }
