@@ -6,13 +6,14 @@
             </mat-label>
         </p>
     </h2>
-    <p>
-        <label>
-            <img class="image" src="{{imageUrl}}" style="width: 50%">
-            <input type="file" (change)="uploadImage($event)" />
-        </label>
-    </p>
+
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <p>
+            <label>
+                <img class="image" src="{{imageUrl}}" style="width: 50%">
+                <input type="file" (change)="uploadImage($event)" formControlName="productImage" />
+            </label>
+        </p>
         <p>
             <mat-form-field style="width: 70%; margin-top: 0%">
                 <input matInput placeholder="Tên sản phẩm" formControlName="productName">
@@ -21,16 +22,16 @@
         <p>
             <mat-form-field>
                 <mat-select formControlName="productType" placeholder="Loại hàng">
-                    <mat-option *ngFor="let category of productTypes" [value]="category.productType">
-                        {{category.productType}}
+                    <mat-option *ngFor="let productType of productTypes" [value]="productType">
+                        {{productType.productType}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
         </p>
         <p>
             <mat-form-field>
-                <mat-select formControlName="tradeMark" placeholder="Loại hàng">
-                    <mat-option *ngFor="let tradeMark of tradeMarks" [value]="tradeMark.tradeMark">
+                <mat-select formControlName="tradeMark" placeholder="Thương hiệu">
+                    <mat-option *ngFor="let tradeMark of tradeMarks" [value]="tradeMark">
                         {{tradeMark.tradeMark}}
                     </mat-option>
                 </mat-select>
@@ -38,18 +39,18 @@
         </p>
         <p>
             <mat-form-field>
-                <mat-select placeholder="Độ tuổi" formControlName="productType" [(value)]="product.productType">
-                    <mat-option *ngFor="let category of productTypes" [value]="category">
-                        {{category.productType}}
+                <mat-select placeholder="Độ tuổi" formControlName="age">
+                    <mat-option *ngFor="let age of ages" [value]="age">
+                        {{age.startAge}} - {{age.endAge}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
         </p>
         <p>
             <mat-form-field>
-                <mat-select placeholder="Cân nặng" placeholder="Cân nặng" formControlName="productType">
-                    <mat-option *ngFor="let category of productTypes" [value]="category">
-                        {{category.productType}}
+                <mat-select placeholder="Cân nặng" formControlName="weight">
+                    <mat-option *ngFor="let weight of weights" [value]="weight">
+                        {{weight.startWeight}} - {{weight.endWeight}} ({{weight.size}})
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -57,17 +58,16 @@
         <p>
             <mat-form-field>
                 <mat-label>Đơn giá (VND)</mat-label>
-                <input matInput>
+                <input matInput formControlName="unitPrice" type="number">
             </mat-form-field>
         </p>
         <mat-form-field>
             <mat-label>Mô tả</mat-label>
-            <textarea matInput placeholder="Mô tả ..." style="height: 200px;"></textarea>
-
+            <textarea matInput placeholder="Mô tả ..." style="height: 200px;" formControlName="description"></textarea>
         </mat-form-field>
     </form>
 </div>
 <div mat-dialog-actions align="end">
     <button mat-button (click)="onNoClick()">Trở lại</button>
-    <button mat-button [mat-dialog-close] (click)="onSubmit()">Lưu lại</button>
+    <button mat-button [mat-dialog-close] (click)="modifyProduct()">Lưu lại</button>
 </div>

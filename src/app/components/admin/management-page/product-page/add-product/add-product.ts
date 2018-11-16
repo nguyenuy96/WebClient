@@ -33,7 +33,7 @@ export class AddProductComponent {
         console.log('ádadasd');
     }
     getProductTypes() {
-        this.productService.getProductTypes().subscribe(
+        this.productService.listProductTypes().subscribe(
             resp => {
                 this.productTypes = resp.body;
             },
@@ -44,7 +44,7 @@ export class AddProductComponent {
     }
 
     getTradeMarks() {
-        this.productService.getTradeMarks().subscribe(
+        this.productService.listTradeMarks().subscribe(
             resp => {
                 this.tradeMarks = resp.body;
             },

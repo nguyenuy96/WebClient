@@ -1,11 +1,14 @@
 export class RestAPI {
 
-    saveProductUrl = "http://localhost:8888/product/save/product";
 
-    saveImageUrl = "http://localhost:8888/image/save";
     imageUrl = "http://localhost:8888/images/";
     //save
 
+    saveProductUrl = "http://localhost:8888/product/save";
+
+    saveImageUrl = "http://localhost:8888/image/save";
+
+    saveProStorageRec = "http://localhost:8888/product/save/storage-receipt";
     //list
 
     listTradeMarkUrl = "http://localhost:8888/trademark/list";
@@ -21,19 +24,22 @@ export class RestAPI {
     listAgeUrl = "http://localhost:8888/age/list";
 
     //get by Id
-    getProductUrl = "http://localhost:8888/product/get";
+    getProductUrl = `http://localhost:8888/product/get`;
 
-    getProductTypeUrl = "http://localhost:8888/product-type/get/";
+    getProductTypeUrl = `http://localhost:8888/product-type/get/`;
 
-    getWarehouseUrl = "http://localhost:8888/warehouse/list/";
+    getWarehouseUrl = `http://localhost:8888/warehouse/get/`;
 
-    getWeightUrl = "http://localhost:8888/weight/list/";
+    getWeightUrl = `http://localhost:8888/weight/get/`;
 
-    getAgeUrl = "http://localhost:8888/age/list/";
+    getAgeUrl = `http://localhost:8888/age/get/`;
+
+    getProdStorageRecUrl = `http://localhost:8888/storage/list/`;
 
     //get by Name
 
     labelByNameUrl = `http://localhost:8888/trademark/getByName/`;
+
     //modify
 
     //delete

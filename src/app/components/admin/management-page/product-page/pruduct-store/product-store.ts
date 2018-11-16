@@ -18,7 +18,7 @@ export class ProductStore {
     }
 
     getWarehouse(){
-        this.productService.getWarehouse().subscribe(
+        this.productService.listWarehouses().subscribe(
             resp => {
                 this.warehouses = resp.body;
             },

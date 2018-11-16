@@ -1,7 +1,7 @@
 export interface Role {
     id: number;
     roleName: string;
-    searchName:string;
+    searchName: string;
 }
 export interface Account {
     id: number;
@@ -29,7 +29,7 @@ export interface Employee {
     nationality: string;
     identification: string;
 }
-export interface UserProfile{
+export interface UserProfile {
     id: number;
     name: string;
     phoneNumber: string;
@@ -95,6 +95,21 @@ export interface Product {
     weight: Weight,
     age: Age,
     promotionId: Promotion,
-    productType:ProductType,
-    image:Image
+    productType: ProductType,
+    image: Image
+}
+
+export interface ProductStorageReceipt {
+    prodStorageReceiptId: number;
+    product: Product;
+    warehouse: Warehouse;
+    amount: number;
+    account: Account;
+}
+
+export interface ProductDisplay {
+    product: Product;
+    storageAmount: number;
+    saleAmount: number;
+    currentAmount: number;
 }

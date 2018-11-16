@@ -4,27 +4,28 @@
             Nhập kho
         </p>
     </h2>
+    <form [formGroup]="productStorageFrom" (ngSubmit)="onSubmit()">
+        <h3 cdkFocusInitial style="width: 100%;">
+            <p>
+                Sản phẩm: {{data.productName}}</p>
+        </h3>
 
-    <h3 cdkFocusInitial style="width: 100%;">
         <p>
-            {{data.productName}}</p>
-    </h3>
-
-    <p>
-        <mat-form-field>
-            <mat-select placeholder="Chi nhánh">
-                <mat-option *ngFor="let warehouse of warehouses" [value]="warehouse">
-                    {{warehouse.warehouseName}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field>
-            <mat-label>Số lượng</mat-label>
-            <input matInput>
-        </mat-form-field>
-    </p>
+            <mat-form-field>
+                <mat-select placeholder="Chi nhánh" formControlName="warehouse">
+                    <mat-option *ngFor="let warehouse of warehouses" [value]="warehouse">
+                        {{warehouse.warehouseName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <mat-label>Số lượng</mat-label>
+                <input matInput formControlName="amount" type="number">
+            </mat-form-field>
+        </p>
+    </form>
 </div>
 <div mat-dialog-actions align="end">
     <button mat-button (click)="onNoClick()">Trở lại</button>

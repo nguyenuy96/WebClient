@@ -1,5 +1,5 @@
 import { Component, Inject } from "@angular/core";
-import { Product, ProductType, TradeMark, Image } from "../../../../../interface/interface";
+import { Product, ProductType, TradeMark, Image, Age, Weight } from "../../../../../interface/interface";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { ProductService } from "../../../../../../services/product/product.service";
 import { HttpErrorResponse, HttpEventType } from "@angular/common/http";
@@ -17,43 +17,51 @@ export class EditProductDialog {
     product: Product;
     productTypes: ProductType[];
     tradeMarks: TradeMark[];
-    tradeMark: string;
+    ages: Age[];
+    weights: Weight[];
     prodCategory: string;
     selectedFiles: FileList;
     imageFile: File;
     imageUrl: string;
     image: Image;
     productForm: FormGroup;
+
     ngOnInit() {
         this.product = this.data;
-        console.log(this.product)
-        this.getProductTypes();
-        this.getTradeMarks();
-        this.tradeMark = this.product.tradeMark.tradeMark;
-        this.prodCategory = this.product.productType.productType;
+        this.initForm();
         if (this.product.image != null)
             this.imageUrl = this.restAPI.imageUrl + this.product.image.imageName;
         else
             this.imageUrl = "..."
-        this.initForm();
     }
 
     initForm() {
         this.productForm = this.formBuilder.group({
-            productName: [this.product.productName],
-            productType: [this.product.productType.productType],
-            tradeMark: [this.product.tradeMark.tradeMark],
+            productName: [''],
+            productType: [''],
+            tradeMark: [''],
             weight: [''],
             age: [''],
             unitPrice: [''],
-            desciption: ['']
-        })
+            description: [''],
+            productImage: ['']
+        });
+
+        this.listProductTypes();
+        this.listTradeMarks();
+        this.listAges();
+        this.listWeights();
+        this.getDescription();
+        this.getProductName();
+        this.getUnitPrice();
     }
 
-    getProductTypes() {
-        this.productService.getProductTypes().subscribe(
+    listProductTypes() {
+        this.productService.listProductTypes().subscribe(
             resp => {
                 this.productTypes = resp.body;
+                const prodTypeSelected = this.productTypes.find(prodType => prodType.productTypeId == this.product.productType.productTypeId);
+                this.productForm.get('productType').setValue(prodTypeSelected);
             },
             (errMsg: HttpErrorResponse) => {
 
@@ -61,10 +69,12 @@ export class EditProductDialog {
         )
     }
 
-    getTradeMarks() {
-        this.productService.getTradeMarks().subscribe(
+    listTradeMarks() {
+        this.productService.listTradeMarks().subscribe(
             resp => {
                 this.tradeMarks = resp.body;
+                const tradeMarkSelected = this.tradeMarks.find(tradeMark => tradeMark.tradeMarkId == this.product.tradeMark.tradeMarkId);
+                this.productForm.get('tradeMark').setValue(tradeMarkSelected);
             },
             (errMsg: HttpErrorResponse) => {
 
@@ -72,35 +82,38 @@ export class EditProductDialog {
         )
     }
 
-    listAge(){
-    }
-
-    getTradeMark(){
-        this.productService.getTradeMark(1).subscribe(
+    listAges() {
+        this.productService.listAges().subscribe(
             resp => {
-                console.log(resp.body);
-            },
-            (errMsg: HttpErrorResponse) => {
-                console.log('adsf')
+                this.ages = resp.body;
+                const ageSelected = this.ages.find(age => age.ageId == this.product.age.ageId);
+                this.productForm.get('age').setValue(ageSelected);
             }
         )
     }
 
-    getTradeMarkByName(){
-        var tradeMark = this.productForm.value.tradeMark;
-        console.log(tradeMark);
-        this.productService.getTradeMarkByName(tradeMark).subscribe(
+    listWeights() {
+        this.productService.listWeights().subscribe(
             resp => {
-                console.log(resp.body);
-            },
-            (errMsg: HttpErrorResponse) => {
-                console.log('sd');
+                this.weights = resp.body;
+                const weightSelected = this.weights.find(weight => weight.weightId == this.product.weight.weightId);
+                this.productForm.get('weight').setValue(weightSelected);
             }
         )
     }
-    onSelectProType(proType: ProductType){
-        console.log(proType);
+
+    getDescription() {
+        this.productForm.get('description').setValue(this.product.description);
     }
+
+    getProductName() {
+        this.productForm.get('productName').setValue(this.product.productName);
+    }
+
+    getUnitPrice() {
+        this.productForm.get('unitPrice').setValue(this.product.unitPrice);
+    }
+
     uploadImage(event) {
         this.selectedFiles = event.target.files;
         this.imageFile = this.selectedFiles.item(0);
@@ -122,18 +135,29 @@ export class EditProductDialog {
     }
 
     modifyProduct() {
-        this.product.image = this.image;
-        this.productService.saveProduct(this.product).subscribe(resp => {
-            this.data = this.product;
-        },
-            (errMesg: HttpErrorResponse) => {
+        if (this.productForm.get('productName').dirty)
+            this.product.productName = this.productForm.value.productName;
+        if (this.productForm.get('productType').dirty)
+            this.product.productType = this.productForm.value.productType;
+        if (this.productForm.get('tradeMark').dirty)
+            this.product.tradeMark = this.productForm.value.tradeMark;
+        if (this.productForm.get('age').dirty)
+            this.product.age = this.productForm.value.age;
+        if (this.productForm.get('weight').dirty)
+            this.product.weight = this.productForm.value.weight;
+        if (this.productForm.get('unitPrice').dirty)
+            this.product.unitPrice = this.productForm.value.unitPrice;
+        if (this.productForm.get('description').dirty)
+            this.product.description = this.productForm.value.description;
+        if (this.productForm.get('productImage').dirty)
+            this.product.image = this.image;
+        this.productService.saveProduct(this.product).subscribe(
+            resp => {
+                console.log("Modify Product Successfully!")
+            },
+            (errMsg: HttpErrorResponse) => {
+                console.log("Modify Product Fail!")
             }
         )
-    }
-
-    onSubmit(){
-        console.log(this.productForm.value);
-        
-        this.getTradeMarkByName();
     }
 }
