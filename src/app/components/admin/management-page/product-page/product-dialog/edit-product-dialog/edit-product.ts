@@ -30,7 +30,7 @@ export class EditProductDialog {
         this.product = this.data;
         this.initForm();
         if (this.product.image != null)
-            this.imageUrl = this.restAPI.imageUrl + this.product.image.imageName;
+            this.imageUrl = this.restAPI.imageUrl + '/' + this.product.image.imageName;
         else
             this.imageUrl = "..."
     }

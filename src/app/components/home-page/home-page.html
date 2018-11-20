@@ -15,7 +15,7 @@
                 </button>
             </ng-template>
         </mat-form-field>
-        <a routerLink="" routerLinkActive="active">
+        <a (click) ="openCardDialog()">
             <mat-icon style=" color: white;font-size: 3em">shopping_cart</mat-icon>
         </a>
         <button mat-button [matMenuTriggerFor]="menu" style="margin-left: 2%; color: white;" *ngIf="account; else notLogin">

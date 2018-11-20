@@ -1,5 +1,5 @@
-import { Component, ViewChild } from "@angular/core";
-import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from "@angular/material";
+import { Component, ViewChild, ChangeDetectorRef } from "@angular/core";
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatTabChangeEvent } from "@angular/material";
 import { SelectionModel } from "@angular/cdk/collections";
 import { Product } from "../../../../interface/interface";
 import { ProductService } from "../../../../../services/product/product.service";
@@ -16,6 +16,7 @@ export class ManageProductComponent {
     dataSource: any;
     selection: any;
     products: Product[];
+    
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
     ngOnInit() {
@@ -54,7 +55,9 @@ export class ManageProductComponent {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
         });
+    }
+    refreshTab(event: MatTabChangeEvent) {
+        this.ngOnInit();
     }
 }

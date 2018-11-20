@@ -21,13 +21,11 @@ button {
     position: absolute;
     height: 30%;
     width: 100%;
-    top: 70%;
     bottom: 0;
     text-align: center;
 }
 
 .container3 {
-    padding-top:2%;
     position: absolute;
     height: 100%;
     width: 100%;
@@ -40,4 +38,13 @@ button {
     right: 0;
     left: 0;
     top: 0
+}
+
+footer {
+    position: absolute;
+    background-color: #777;
+    text-align: center;
+    color: white;
+    bottom: 0%;
+    width: 100%;
 }

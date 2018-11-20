@@ -1,40 +1,66 @@
 export class RestAPI {
 
-
-    imageUrl = "http://localhost:8888/images/";
     //save
 
-    saveProductUrl = "http://localhost:8888/product/save";
+    //product url
 
-    saveImageUrl = "http://localhost:8888/image/save";
+    productUrl = `http://localhost:8888/product`;
 
-    saveProStorageRec = "http://localhost:8888/product/save/storage-receipt";
+    //trade mark url
+    
+    tradeMarkUrl = `http://localhost:8888/trademark`;
+
+    //warehouse url
+
+    warehouseUrl = `http://localhost:8888/warehouse`;
+    //product type url
+
+    productTypeUrl =`http://localhost:8888/product-type`;
+    
+    //age url
+
+    ageUrl = `http://localhost:8888/age`;
+
+    //weight url
+
+    weightUrl = `http://localhost:8888/weight`;
+
+    //image url
+
+    imageUrl = `http://localhost:8888/image`;
+    
+    //storage url
+
+    storageUrl = `http://localhost:8888/storage`;
+    // saveImageUrl = "http://localhost:8888/image";    
+
+
+
+    // saveProStorageRec = "http://localhost:8888/storage";
     //list
 
-    listTradeMarkUrl = "http://localhost:8888/trademark/list";
+    // listTradeMarkUrl = "http://localhost:8888/trademark";
 
-    listProductUrl = "http://localhost:8888/product/list/product";
+    // listProductTypeUrl = "http://localhost:8888/product-type";
 
-    listProductTypeUrl = "http://localhost:8888/product-type/list";
+    // listWarehouseUrl = "http://localhost:8888/warehouse";
 
-    listWarehouseUrl = "http://localhost:8888/warehouse/list";
+    // listWeightUrl = "http://localhost:8888/weight";
 
-    listWeightUrl = "http://localhost:8888/weight/list";
-
-    listAgeUrl = "http://localhost:8888/age/list";
+    // listAgeUrl = "http://localhost:8888/age";
 
     //get by Id
-    getProductUrl = `http://localhost:8888/product/get`;
+    // getProductUrl = `http://localhost:8888/product/get`;
 
-    getProductTypeUrl = `http://localhost:8888/product-type/get/`;
+    // getProductTypeUrl = `http://localhost:8888/product-type/get/`;
 
-    getWarehouseUrl = `http://localhost:8888/warehouse/get/`;
+    // getWarehouseUrl = `http://localhost:8888/warehouse/get/`;
 
-    getWeightUrl = `http://localhost:8888/weight/get/`;
+    // getWeightUrl = `http://localhost:8888/weight/get/`;
 
-    getAgeUrl = `http://localhost:8888/age/get/`;
+    // getAgeUrl = `http://localhost:8888/age/get/`;
 
-    getProdStorageRecUrl = `http://localhost:8888/storage/list/`;
+    // getProdStorageRecUrl = `http://localhost:8888/storage/list/`;
 
     //get by Name
 

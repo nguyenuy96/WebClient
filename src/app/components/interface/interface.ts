@@ -113,3 +113,8 @@ export interface ProductDisplay {
     saleAmount: number;
     currentAmount: number;
 }
+
+export interface ShoppingCart {
+    product: Product;
+    amount: number;
+}

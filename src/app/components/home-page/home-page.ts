@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Account } from "../interface/interface";
+import { MatDialog } from "@angular/material";
+import { ShoppingCartDialog } from "../admin/management-page/product-page/product-dialog/shopping-cart/shopping-cart";
 
 @Component({
     selector: 'home-page',
@@ -12,7 +14,7 @@ export class HomePage {
     value = "";
     account: any;
     isLogined: boolean;
-    constructor(private router: Router) { }
+    constructor(private router: Router, public dialog: MatDialog) { }
     ngOnInit() {
         var account = sessionStorage.user;
         this.isLogined = account == undefined ? false : true;
@@ -29,7 +31,16 @@ export class HomePage {
     }
     logOut() {
         sessionStorage.removeItem('user');
+        sessionStorage.removeItem('token');
         this.account = undefined;
         this.ngOnInit();
     }
+
+    openCardDialog() {
+        const dialogRef = this.dialog.open(ShoppingCartDialog, {
+            width: '80%'
+        });
+
+    }
+
 }

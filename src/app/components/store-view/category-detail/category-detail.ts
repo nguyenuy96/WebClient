@@ -1,21 +1,35 @@
 import { Component } from "@angular/core";
-interface Product {
-    name: string;
-    image: string;
-    price: string;
-}
+import { ProductService } from "src/app/services/product/product.service";
+import { Product } from "../../interface/interface";
+import { RestAPI } from "src/app/services/rest-api";
+import { MatDialog } from "@angular/material";
+import { ProductDetailDialog } from "../../admin/management-page/product-page/product-dialog/product-detail-dialog/product-detail-dialog";
+
 @Component({
     selector: 'category-detail',
     templateUrl: './category-detail.html',
     styleUrls: ['./category-detail.css']
 })
 export class ProductCategoryDetail {
-    products: Product[] = [
-        { name: 'Alpha IQ Gold', image: './../../assets/img/dielac-alpha-gold-IQ.jpg', price: '3200' },
-        { name: 'Alpha IQ Gold', image: './../../assets/img/dielac-alpha.jpg', price: '3200' },
-        { name: 'Tã Bobby', image: './../../assets/img/bobby.jpg', price: '3800' },
-        { name: 'Friso Gold', image: './../../assets/img/friso-gold.jpg', price: '3600' },
-        { name: 'Tã Pampers', image: './../../assets/img/pampers.jpg', price: '3800' },
-        { name: 'Tã Huggies', image: './../../assets/img/huggies.jpg', price: '3100' }
-    ]
+    constructor(private productService: ProductService, private restAPI: RestAPI, public dialog: MatDialog) { }
+    products: Product[];
+    imageAPI = this.restAPI.imageUrl;
+    ngOnInit() {
+        this.listProduct();
+    }
+
+    listProduct() {
+        this.productService.listProduct().subscribe(
+            resp => {
+                this.products = resp.body;
+            }
+        )
+    }
+
+    openProdDetailDialog(product: Product) {
+        const dialogRef = this.dialog.open(ProductDetailDialog, {
+            width: '80%',
+            data: product
+        });
+    }
 }

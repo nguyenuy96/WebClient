@@ -14,3 +14,11 @@ h2 {
 .image {
     cursor: pointer;
 }
+
+label{
+    cursor:pointer
+}
+
+input[type="file"] {
+    display: none;
+}

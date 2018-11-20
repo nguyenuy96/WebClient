@@ -10,4 +10,8 @@ export class _RequestHeader{
     imageHeader = new HttpHeaders({
         'Authorization': sessionStorage.token
     })
+
+    httpHeaderNoToken = new HttpHeaders({
+        'Content-Type':'application/json',
+    })
 }
