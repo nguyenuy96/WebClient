@@ -10,9 +10,9 @@ export class UserService {
     employeeUrl = "http://localhost:8888/user/list-employee";
     customerUrl = "http://localhost:8888/user/list-customer";
     listEmployee(): Observable<HttpResponse<Employee[]>> {
-        return this.httpClient.get<Employee[]>(this.employeeUrl, { headers: this.requestHeader.httpHeader, observe: 'response' });
+        return this.httpClient.get<Employee[]>(this.employeeUrl, { headers: this.requestHeader.httpHeader(), observe: 'response' });
     }
     listCustomer(): Observable<HttpResponse<Customer[]>> {
-        return this.httpClient.get<Customer[]>(this.customerUrl, { headers: this.requestHeader.httpHeader, observe: 'response' });
+        return this.httpClient.get<Customer[]>(this.customerUrl, { headers: this.requestHeader.httpHeader(), observe: 'response' });
     }
 }

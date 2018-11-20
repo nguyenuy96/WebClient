@@ -11,11 +11,11 @@ export class AccountService {
     saveUserUrl = "http://localhost:8888/user/saveuser";
     checkAccount(username: string): Observable<HttpResponse<any>> {
         const url = `${this.checkAccountUrl}/${username}`;
-        return this.httpClient.get<any>(url, { headers: this.requestHeader.httpHeader, observe: 'response' });
+        return this.httpClient.get<any>(url, { headers: this.requestHeader.httpHeader(), observe: 'response' });
     }
     saveUser(userProfile: Object): Observable<HttpResponse<Object>> {
         return this.httpClient.post<Object>(this.saveUserUrl, userProfile, {
-            headers: this.requestHeader.httpHeader, observe: 'response'
+            headers: this.requestHeader.httpHeader(), observe: 'response'
         });
     }
 }

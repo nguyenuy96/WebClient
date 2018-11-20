@@ -9,6 +9,6 @@ export class RoleService{
     constructor(private httpClient: HttpClient, private requestHeader: _RequestHeader) { }
     listRoleUrl = "http://localhost:8888/user/list-role";
     listRoles(): Observable<HttpResponse<Role[]>> {
-        return this.httpClient.get<Role[]>(this.listRoleUrl, {headers: this.requestHeader.httpHeader, observe:'response'});
+        return this.httpClient.get<Role[]>(this.listRoleUrl, {headers: this.requestHeader.httpHeader(), observe:'response'});
     }
 }

@@ -1,17 +1,32 @@
 import { HttpHeaders } from "@angular/common/http";
+import { Product } from "../components/interface/interface";
+import { Injectable, Component } from "@angular/core";
 
-export class _RequestHeader{
-    httpHeader = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': sessionStorage.token,
-    })
+@Component({})
+export class _RequestHeader {
 
+    // httpHeader = new HttpHeaders({
+    //     'Content-Type': 'application/json'
+    // })
 
-    imageHeader = new HttpHeaders({
-        'Authorization': sessionStorage.token
-    })
+    imageHeader(): HttpHeaders {
+        return new HttpHeaders({
+            'Authorization': sessionStorage.token
+        })
+    }
+    //     'Authorization': ''
+    // })
 
-    httpHeaderNoToken = new HttpHeaders({
-        'Content-Type':'application/json',
-    })
+    httpHeader(): HttpHeaders {
+        let token = sessionStorage.token;
+        if (token === undefined)
+            return new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        else
+            return new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': token
+            })
+    }
 }

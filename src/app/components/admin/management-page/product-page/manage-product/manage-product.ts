@@ -26,6 +26,7 @@ export class ManageProductComponent {
         this.productService.listProduct().subscribe(
             resp => {
                 this.products = resp.body;
+                console.log(this.products)
                 this.dataSource = new MatTableDataSource<Product>(this.products);
                 this.selection = new SelectionModel<Product>(true, []);
                 this.dataSource.paginator = this.paginator;

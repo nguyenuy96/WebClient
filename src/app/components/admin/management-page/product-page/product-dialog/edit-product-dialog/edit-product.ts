@@ -115,6 +115,7 @@ export class EditProductDialog {
     }
 
     uploadImage(event) {
+        let a = true;
         this.selectedFiles = event.target.files;
         this.imageFile = this.selectedFiles.item(0);
         this.productService.saveImage(this.imageFile).subscribe(resp => {
@@ -123,8 +124,9 @@ export class EditProductDialog {
             // } else if (event instanceof HttpResponse) {
             //   console.log('File is completely uploaded!');
             // }
-            this.image = resp.body;
-            this.imageUrl = this.restAPI.imageUrl + this.image.imageName;
+            setTimeout(()=>{ this.image = resp.body;
+                this.imageUrl = this.restAPI.imageUrl + "/" + this.image.imageName; }, 2000)
+            
         });
 
         this.selectedFiles = undefined;
