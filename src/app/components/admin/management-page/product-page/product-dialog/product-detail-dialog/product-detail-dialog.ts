@@ -30,7 +30,7 @@ export class ProductDetailDialog {
 
     initForm() {
         this.shoppingCartForm = this.formBuilder.group({
-            amount: ['1']
+            amount: [1]
         })
     }
     addProductIntoCart() {
@@ -42,7 +42,7 @@ export class ProductDetailDialog {
             this.shoppingCart = JSON.parse(cart);
         }
         console.log(this.shoppingCart)
-        this.shoppingCart.push({product: this.product, amount: this.amount});
+        this.shoppingCart.push({productId: this.product.productId, amount: this.amount});
         this.cookie.set('cart', JSON.stringify(this.shoppingCart));
         console.log(JSON.parse(this.cookie.get('cart')))
     }

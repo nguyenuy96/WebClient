@@ -115,6 +115,6 @@ export interface ProductDisplay {
 }
 
 export interface ShoppingCart {
-    product: Product;
-    amount: number;
+    productId:number;
+    amount:number;
 }

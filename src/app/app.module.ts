@@ -101,7 +101,7 @@ const appRoutes: Routes = [
         FormsModule, ReactiveFormsModule
     ],
     entryComponents: [EditProductDialog, StoreProductDialog, ProductDetailDialog, ShoppingCartDialog],
-    providers: [_RequestHeader,RoleService, FormBuilder, AccountService, AccountCreationPage, UserService, ProductService, RestAPI],
+    providers: [_RequestHeader,RoleService, FormBuilder, AccountService, AccountCreationPage, UserService, ProductService, RestAPI, CookieService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
