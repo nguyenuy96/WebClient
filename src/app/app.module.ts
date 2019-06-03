@@ -35,12 +35,27 @@ import { StoreProductDialog } from './components/admin/management-page/product-p
 import { ProductDetailDialog } from './components/admin/management-page/product-page/product-dialog/product-detail-dialog/product-detail-dialog';
 import { CookieService } from 'ngx-cookie-service';
 import { ShoppingCartDialog } from './components/admin/management-page/product-page/product-dialog/shopping-cart/shopping-cart';
+import { NgxPayPalModule } from 'ngx-paypal';
+import { PaymentComponent } from './components/admin/management-page/product-page/payment/payment';
+import { DeleteProductComponent } from './components/admin/management-page/product-page/delete-product/delete-product.component';
+import { OrderDialogComponent } from './components/admin/management-page/product-page/product-dialog/order-dialog/order-dialog.component';
+import { OrderWaitingComponent } from './components/admin/management-page/order-page/order-waiting/order-waiting.component';
+import { OrderApprovedComponent } from './components/admin/management-page/order-page/order-approved/order-approved.component';
+import { OrderCompletedComponent } from './components/admin/management-page/order-page/order-completed/order-completed.component';
+import { OrderPageComponent } from './components/admin/management-page/order-page/order-page/order-page.component';
+import { WaitingingOrderDialog } from './components/admin/management-page/order-page/order-dialog/waiting-order-dialog/waiting-order-dialog.component';
+import { TrademarkComponent } from './components/admin/management-page/trademark/trademark.component';
+import { ApprovedOrderDialogComponent } from './components/admin/management-page/order-page/order-dialog/approved-order-dialog/approved-order-dialog.component';
+
 const appRoutes: Routes = [
     //user with manager or employee role view
     {
         path: 'admin-page', component: AdminPageComponent, outlet: 'home', children: [
             { path: 'account', component: AccountPage, outlet: 'admin' },
             { path: 'product', component: ManageProductComponent, outlet: 'admin' },
+            { path: 'approved-order', component: OrderApprovedComponent, outlet: 'admin' },
+            { path: 'waiting-order', component: OrderWaitingComponent, outlet: 'admin' },
+            { path: 'trademark', component: TrademarkComponent, outlet: 'admin'}
         ]
     },
 
@@ -87,7 +102,15 @@ const appRoutes: Routes = [
         EditProductDialog,
         StoreProductDialog,
         ProductDetailDialog,
-        ShoppingCartDialog
+        ShoppingCartDialog,
+        PaymentComponent,
+        DeleteProductComponent,
+        OrderDialogComponent,
+        OrderWaitingComponent,
+        OrderApprovedComponent,
+        OrderCompletedComponent,
+        OrderPageComponent, 
+        WaitingingOrderDialog, TrademarkComponent, ApprovedOrderDialogComponent
     ],
 
     imports: [
@@ -98,10 +121,11 @@ const appRoutes: Routes = [
         ),
         BrowserAnimationsModule,
         MaterialModule,
-        FormsModule, ReactiveFormsModule
+        FormsModule, ReactiveFormsModule,
+        NgxPayPalModule
     ],
-    entryComponents: [EditProductDialog, StoreProductDialog, ProductDetailDialog, ShoppingCartDialog],
-    providers: [_RequestHeader,RoleService, FormBuilder, AccountService, AccountCreationPage, UserService, ProductService, RestAPI, CookieService],
+    entryComponents: [ApprovedOrderDialogComponent,WaitingingOrderDialog, OrderDialogComponent, EditProductDialog, StoreProductDialog, ProductDetailDialog, ShoppingCartDialog, PaymentComponent, DeleteProductComponent],
+    providers: [_RequestHeader, RoleService, FormBuilder, AccountService, AccountCreationPage, UserService, ProductService, RestAPI, CookieService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

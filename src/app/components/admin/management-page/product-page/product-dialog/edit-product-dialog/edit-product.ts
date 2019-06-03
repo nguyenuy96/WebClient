@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { ProductService } from "../../../../../../services/product/product.service";
 import { HttpErrorResponse, HttpEventType } from "@angular/common/http";
 import { RestAPI } from "../../../../../../services/rest-api";
-import { FormGroup, FormBuilder } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
     selector: 'edit-product-dialog',
@@ -37,14 +37,18 @@ export class EditProductDialog {
 
     initForm() {
         this.productForm = this.formBuilder.group({
-            productName: [''],
+            productName: ['', Validators.required],
             productType: [''],
             tradeMark: [''],
             weight: [''],
             age: [''],
             unitPrice: [''],
             description: [''],
-            productImage: ['']
+            productImage: [''],
+            preservation: [''],
+            ingredient: [''],
+            manufDate: [''],
+            expiryDate: [''],
         });
 
         this.listProductTypes();
@@ -54,6 +58,10 @@ export class EditProductDialog {
         this.getDescription();
         this.getProductName();
         this.getUnitPrice();
+        this.getIngredient();
+        this.getPreservation();
+        this.getManufDate();
+        this.getExpiryDate();
     }
 
     listProductTypes() {
@@ -86,8 +94,10 @@ export class EditProductDialog {
         this.productService.listAges().subscribe(
             resp => {
                 this.ages = resp.body;
-                const ageSelected = this.ages.find(age => age.ageId == this.product.age.ageId);
-                this.productForm.get('age').setValue(ageSelected);
+                if (this.product.age != null) {
+                    const ageSelected = this.ages.find(age => age.ageId == this.product.age.ageId);
+                    this.productForm.get('age').setValue(ageSelected);
+                }
             }
         )
     }
@@ -96,8 +106,10 @@ export class EditProductDialog {
         this.productService.listWeights().subscribe(
             resp => {
                 this.weights = resp.body;
-                const weightSelected = this.weights.find(weight => weight.weightId == this.product.weight.weightId);
-                this.productForm.get('weight').setValue(weightSelected);
+                if (this.product.weight != null) {
+                    const weightSelected = this.weights.find(weight => weight.weightId == this.product.weight.weightId);
+                    this.productForm.get('weight').setValue(weightSelected);
+                }
             }
         )
     }
@@ -106,6 +118,21 @@ export class EditProductDialog {
         this.productForm.get('description').setValue(this.product.description);
     }
 
+    getPreservation() {
+        this.productForm.get('preservation').setValue(this.product.preservation);
+    }
+
+    getIngredient() {
+        this.productForm.get('ingredient').setValue(this.product.ingredient);
+    }
+
+    getManufDate() {
+        this.productForm.get('manufDate').setValue(this.product.manufDate);
+    }
+
+    getExpiryDate() {
+        this.productForm.get('expiryDate').setValue(this.product.expiryDate);
+    }
     getProductName() {
         this.productForm.get('productName').setValue(this.product.productName);
     }
@@ -124,9 +151,11 @@ export class EditProductDialog {
             // } else if (event instanceof HttpResponse) {
             //   console.log('File is completely uploaded!');
             // }
-            setTimeout(()=>{ this.image = resp.body;
-                this.imageUrl = this.restAPI.imageUrl + "/" + this.image.imageName; }, 2000)
-            
+            setTimeout(() => {
+                this.image = resp.body;
+                this.imageUrl = this.restAPI.imageUrl + "/" + this.image.imageName;
+            }, 4000)
+
         });
 
         this.selectedFiles = undefined;
@@ -153,6 +182,14 @@ export class EditProductDialog {
             this.product.description = this.productForm.value.description;
         if (this.productForm.get('productImage').dirty)
             this.product.image = this.image;
+        if (this.productForm.get('ingredient').dirty)
+            this.product.ingredient = this.productForm.value.ingredient;
+        if (this.productForm.get('preservation').dirty)
+            this.product.preservation = this.productForm.value.preservation;
+        if (this.productForm.get('manufDate').dirty)
+            this.product.manufDate = this.productForm.value.manufDate;
+        if (this.productForm.get('expiryDate').dirty)
+            this.product.expiryDate = this.productForm.value.expiryDate;
         this.productService.saveProduct(this.product).subscribe(
             resp => {
                 console.log("Modify Product Successfully!")

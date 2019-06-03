@@ -2,7 +2,7 @@
     <h2>
         <p>
             <mat-label cdkFocusInitial>
-                <b>Chỉnh sửa sản phẩm</b>
+                <b>Cập nhật sản phẩm</b>
             </mat-label>
         </p>
     </h2>
@@ -16,7 +16,7 @@
         </p>
         <p>
             <mat-form-field style="width: 70%; margin-top: 0%">
-                <input matInput placeholder="Tên sản phẩm" formControlName="productName">
+                <input matInput placeholder="Tên sản phẩm" formControlName="productName" required>
             </mat-form-field>
         </p>
         <p>
@@ -57,13 +57,38 @@
         </p>
         <p>
             <mat-form-field>
+                <mat-label>Ngày sản xuất</mat-label>
+                <input matInput [matDatepicker]="picker1" formControlName="manufDate" enabled=true>
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field >
+                <mat-label>Hạn sử dụng</mat-label>
+                <input matInput formControlName="expiryDate" [matDatepicker]="picker2">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
                 <mat-label>Đơn giá (VND)</mat-label>
                 <input matInput formControlName="unitPrice" type="number">
             </mat-form-field>
         </p>
         <mat-form-field>
             <mat-label>Mô tả</mat-label>
-            <textarea matInput placeholder="Mô tả ..." style="height: 200px;" formControlName="description"></textarea>
+            <textarea matInput placeholder="Mô tả ..." style="height: 100px;" formControlName="description"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Thành phần</mat-label>
+            <textarea matInput placeholder="Thành phần ..." style="height: 100px;padding-top: 20px" formControlName="ingredient"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Hướng dẫn bảo quản</mat-label>
+            <textarea matInput placeholder="Hướng dẫn bảo quản ..." style="height: 100px;padding-top: 20px"
+                formControlName="preservation"></textarea>
         </mat-form-field>
     </form>
 </div>

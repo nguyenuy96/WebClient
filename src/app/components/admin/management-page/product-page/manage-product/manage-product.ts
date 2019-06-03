@@ -5,6 +5,7 @@ import { Product } from "../../../../interface/interface";
 import { ProductService } from "../../../../../services/product/product.service";
 import { EditProductDialog } from "../product-dialog/edit-product-dialog/edit-product";
 import { StoreProductDialog } from "../product-dialog/store-product-dialog/store-product";
+import { DeleteProductComponent } from "../delete-product/delete-product.component";
 
 @Component({
     templateUrl: './manage-product.html',
@@ -26,7 +27,6 @@ export class ManageProductComponent {
         this.productService.listProduct().subscribe(
             resp => {
                 this.products = resp.body;
-                console.log(this.products)
                 this.dataSource = new MatTableDataSource<Product>(this.products);
                 this.selection = new SelectionModel<Product>(true, []);
                 this.dataSource.paginator = this.paginator;
@@ -41,7 +41,7 @@ export class ManageProductComponent {
 
     editProduct(product: Product): void {
         const dialogRef = this.dialog.open(EditProductDialog, {
-            width: '35%',
+            width: '55%',
             data: product
         });
         dialogRef.afterClosed().subscribe(result => {
@@ -60,5 +60,14 @@ export class ManageProductComponent {
     }
     refreshTab(event: MatTabChangeEvent) {
         this.ngOnInit();
+    }
+
+    deleteProduct(product: Product) {
+        const dialogRef = this.dialog.open(DeleteProductComponent, {
+            data:product,
+        });
+        dialogRef.afterClosed().subscribe(rs => {
+            this.ngOnInit();
+        })
     }
 }

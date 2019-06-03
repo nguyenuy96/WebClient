@@ -1,7 +1,7 @@
-<mat-grid-list cols="4" rowHeight="4:5">
+<mat-grid-list cols="4" rowHeight="4:5" gutterSize="10px">
     <mat-grid-tile *ngFor="let product of products">
         <div class="container1">
-            <button mat-button style="display: flex;" (click) = "openProdDetailDialog(product)">
+            <button mat-button (click) = "openProdDetailDialog(product)">
                 <img class="image" src="{{imageAPI}}/{{product.image.imageName}}">
             </button>
         </div>
@@ -9,14 +9,9 @@
             <div class="container3">
                 <p>
                     <mat-label>
-                        {{product.productName}} ({{product.unitPrice | number}}&#8363;)
+                        {{product.productName}} ({{product.unitPrice | currency:"$"}})
                     </mat-label>
                 </p>
-                <!-- <p>
-                    <mat-label>
-                        {{product.price}} VND
-                    </mat-label>
-                </p> -->
                 <p style="padding-top: 0">
                     <button mat-button>
                         <mat-icon>add_circle_outline</mat-icon> Thêm giỏ hàng
@@ -25,7 +20,7 @@
             </div>
         </div>
     </mat-grid-tile>
-    <footer>
+    <!-- <footer>
         <p>Footer</p>
-    </footer>
+    </footer> -->
 </mat-grid-list>

@@ -3,7 +3,7 @@ import { HttpClient, HttpResponse, HttpEvent, HttpRequest, HttpHeaders } from "@
 import { Observable } from "rxjs";
 import { _RequestHeader } from "../header";
 import { RestAPI } from "../rest-api";
-import { Product, TradeMark, ProductType, Weight, Age, Warehouse, Image, ProductStorageReceipt } from "../../components/interface/interface";
+import { Product, TradeMark, ProductType, Weight, Age, Warehouse, Image, ProductStorageReceipt, Cart, ShoppingCart, Order, ExportRec, Country } from "../../components/interface/interface";
 
 @Injectable()
 export class ProductService {
@@ -21,6 +21,10 @@ export class ProductService {
         return this.httpClient.get<Product[]>(this.restAPI.productUrl, { headers: this.requestHeader.httpHeader(), observe: 'response' });
     }
 
+    deleteProduct(productId: number): Observable<{}> {
+        let url = this.restAPI.productUrl + "/" + `${productId}`;
+        return this.httpClient.delete(url, { headers: this.requestHeader.httpHeader() });
+    }
     //image
 
     saveImage(file: File): Observable<HttpResponse<Image>> {
@@ -59,6 +63,10 @@ export class ProductService {
         return this.httpClient.get<TradeMark>(url, { headers: this.requestHeader.httpHeader(), observe: 'response' });
     }
 
+    saveTradeMark(tradeMark: any): Observable<{}> {
+        return this.httpClient.post(this.restAPI.tradeMarkUrl, tradeMark, { headers: this.requestHeader.httpHeader(), observe: 'response' })
+    }
+
     //age
 
     listAges(): Observable<HttpResponse<Age[]>> {
@@ -83,24 +91,72 @@ export class ProductService {
         return this.httpClient.get<ProductType[]>(this.restAPI.productTypeUrl, { headers: this.requestHeader.httpHeader(), observe: 'response' });
     }
 
-    //
-    //list
-    
+    saveProductType(productType: ProductType): Observable<{}> {
+        return this.httpClient.post(this.restAPI.productTypeUrl, productType, { headers: this.requestHeader.httpHeader(), observe: 'response' })
+    }
+    //cart
 
-    
-    
+    addCart(): Observable<HttpResponse<Cart>> {
+        return this.httpClient.get<Cart>(this.restAPI.cartUrl, { headers: this.requestHeader.httpHeader(), observe: 'response' })
+    }
 
-    
+    addProductIntoCart(shoppingCart: ShoppingCart): Observable<HttpResponse<ShoppingCart>> {
+        return this.httpClient.post<ShoppingCart>(this.restAPI.cartUrl, shoppingCart, { headers: this.requestHeader.httpHeader(), observe: 'response' })
+    }
 
-    
+    getCart(cartId: number): Observable<HttpResponse<ShoppingCart[]>> {
+        let cartUrl = this.restAPI.cartUrl + "/" + `${cartId}`;
+        return this.httpClient.get<ShoppingCart[]>(cartUrl, { headers: this.requestHeader.httpHeader(), observe: 'response' })
+    }
 
-   
+    removeProductFromCart(productId: number, cartId: number): Observable<{}> {
+        let url = this.restAPI.cartUrl + "/" + `${productId}` + "/" + `${cartId}`;
+        return this.httpClient.delete(url);
+    }
+    //order
+    saveOrder(order: any): Observable<HttpResponse<Order>> {
+        return this.httpClient.post<Order>(this.restAPI.orderUrl, order, { headers: this.requestHeader.httpHeader(), observe: 'response' });
+    }
+
+    getOrderByCustomer(customerId: number, orderState: string): Observable<HttpResponse<Order[]>> {
+        let url = this.restAPI.orderUrl + "/owner/" + `${customerId}` + "/" + `${orderState}`;
+        return this.httpClient.get<Order[]>(url, { headers: this.requestHeader.httpHeader(), observe: 'response' });
+    }
+
+    getOrderByOrderStateOfCus(customerId: number, orderState: string): Observable<HttpResponse<Order[]>> {
+        let url = this.restAPI.orderUrl + "/owner" + `${customerId}` + "/" + `${orderState}`;
+        return this.httpClient.get<Order[]>(url, { headers: this.requestHeader.httpHeader(), observe: 'response' });
+    }
+
+    getOrderByState(orderState: string): Observable<HttpResponse<Order[]>> {
+        let url = this.restAPI.orderUrl + "/" + `${orderState}`;
+        return this.httpClient.get<Order[]>(url, { headers: this.requestHeader.httpHeader(), observe: 'response' })
+    }
+
+    //export 
+    saveExportRec(orderId: number, exportRec: ExportRec): Observable<{}> {
+        let exportRecUrl = this.restAPI.exportRecUrl + "/" + `${orderId}`;
+        return this.httpClient.post(exportRecUrl, exportRec, { headers: this.requestHeader.httpHeader() })
+    }
+
+    getCountry(): Observable<HttpResponse<Country[]>> {
+        return this.httpClient.get<Country[]>(this.restAPI.countryUrl, { headers: this.requestHeader.httpHeader(), observe: 'response' })
+    }
+
+    saveCountry(country: any): Observable<{}> {
+        return this.httpClient.post(this.restAPI.countryUrl, country, { headers: this.requestHeader.httpHeader(), observe: 'response' })
+    }
+
+
+
+
+
     //get By Id
-    
 
-    
+
+
     //get By Name
-    
+
 
 
     //delete

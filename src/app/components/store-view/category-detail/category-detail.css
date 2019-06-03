@@ -3,7 +3,9 @@ mat-grid-tile {
 }
 
 button {
-    font-family: 'Times New Roman', Times, serif
+    font-family: 'Times New Roman', Times, serif;
+    width: 100%;
+    height: 100%;
 }
 
 .container1 {
@@ -11,10 +13,6 @@ button {
     height: 70%;
     width: 100%;
     top:0;
-}
-button {
-    width: 100%;
-    height: 100%;
 }
 
 .container2 {

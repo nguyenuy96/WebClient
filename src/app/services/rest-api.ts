@@ -32,10 +32,19 @@ export class RestAPI {
     //storage url
 
     storageUrl = `http://localhost:8888/storage`;
-    // saveImageUrl = "http://localhost:8888/image";    
+    // saveImageUrl = "http://localhost:8888/image";
+    
+    //cart url
+    cartUrl = `http://localhost:8888/cart`;
 
+    //order url
+    orderUrl = `http://localhost:8888/order`;
 
+    //export rec
+    exportRecUrl = `http://localhost:8888/export`;
 
+    //country
+    countryUrl = `http://localhost:8888/country`;
     // saveProStorageRec = "http://localhost:8888/storage";
     //list
 

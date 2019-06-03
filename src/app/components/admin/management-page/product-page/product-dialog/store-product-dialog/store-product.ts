@@ -48,7 +48,7 @@ export class StoreProductDialog {
         console.log(this.productStorageReceipt);
         this.productService.saveProductStorageRec(this.productStorageReceipt).subscribe(
             resp => {
-                console.log('Save Rec Successfully!')
+                alert("Đã nhập " + this.productStorageReceipt.amount + " " + this.productStorageReceipt.product.productName + " vào kho " + this.productStorageReceipt.warehouse.warehouseName)
             },
             (errMsg: HttpErrorResponse) => {
                 console.log(errMsg.status);

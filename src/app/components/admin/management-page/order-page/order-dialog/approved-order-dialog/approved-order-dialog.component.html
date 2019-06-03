@@ -1,0 +1,31 @@
+<div mat-dialog-content>
+  <h1>ĐƠN HÀNG {{data.orderId}}</h1>
+  <h3>Người mua: {{data.customer.name}}</h3>
+  <h3>Địa chỉ: {{data.addressDelivery}}</h3>
+  <h3>Số điện thoại: {{data.phoneDelivery}}</h3>
+  <div class="mat-elevation">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef class="position">
+          <b>Mã sản phẩm</b>
+        </th>
+        <td mat-cell *matCellDef="let cartDetail"> {{cartDetail.cartDetailId.product.productId}} </td>
+      </ng-container>
+      <ng-container matColumnDef="productName">
+        <th mat-header-cell *matHeaderCellDef class="name">
+          <b>Tên sản phẩm</b>
+        </th>
+        <td mat-cell *matCellDef="let cartDetail"> {{cartDetail.cartDetailId.product.productName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef class="amount">
+          <b>Số lượng</b>
+        </th>
+        <td mat-cell *matCellDef="let cartDetail"> {{cartDetail.amount}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let cartDetail; columns: displayedColumns;">
+      </tr>
+    </table>
+  </div>
+</div>

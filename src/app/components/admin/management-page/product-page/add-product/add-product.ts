@@ -14,7 +14,7 @@ import { MatTabChangeEvent } from "@angular/material";
 })
 
 export class AddProductComponent {
-    constructor(private productService: ProductService, private formBuilder: FormBuilder,private restAPI: RestAPI, private prodComponent: ManageProductComponent) { }
+    constructor(private productService: ProductService, private formBuilder: FormBuilder, private restAPI: RestAPI, private prodComponent: ManageProductComponent) { }
     productTypes: ProductType[];
     tradeMarks: TradeMark[];
     ages: Age[];
@@ -26,7 +26,7 @@ export class AddProductComponent {
     selectedFiles: FileList;
     product: Product;
     changeDetectorRefs: ChangeDetectorRef;
-    ngOnInit(){
+    ngOnInit() {
         this.getProductTypes();
         this.getTradeMarks();
         this.listAge();
@@ -47,26 +47,35 @@ export class AddProductComponent {
             // } else if (event instanceof HttpResponse) {
             //   console.log('File is completely uploaded!');
             // }
+            setTimeout(() => {
             this.image = resp.body;
-            this.imageUrl = this.restAPI.imageUrl +'/'+ this.image.imageName;
+                this.imageUrl = this.restAPI.imageUrl + "/" + this.image.imageName;
+            }, 4000)
+            // this.image = resp.body;
+            // this.imageUrl = this.restAPI.imageUrl +'/'+ this.image.imageName;
         });
 
         this.selectedFiles = undefined;
     }
-    initForm(){
+    initForm() {
         this.productForm = this.formBuilder.group({
             productName: ['', Validators.required],
-            productType:['', Validators.required],
-            tradeMark:['', Validators.required],
-            age:[''],
-            weight:[''],
-            unitPrice:['', Validators.required],
-            description:['', Validators.required],
-            productImage:['']
+            productType: ['', Validators.required],
+            tradeMark: ['', Validators.required],
+            age: [''],
+            manufDate: [new Date()],
+            expiryDate: [new Date()],
+            weight: [''],
+            unitPrice: ['', Validators.required],
+            net: [''],
+            description: ['', Validators.required],
+            productImage: [''],
+            preservation:[''],
+            ingredient:['']
         })
     }
 
-    openImage(){
+    openImage() {
         console.log('ádadasd');
     }
     getProductTypes() {
@@ -91,7 +100,7 @@ export class AddProductComponent {
         )
     }
 
-    listAge(){
+    listAge() {
         this.productService.listAges().subscribe(
             resp => {
                 this.ages = resp.body;
@@ -107,19 +116,25 @@ export class AddProductComponent {
         )
     }
 
-    saveProduct(event: MatTabChangeEvent){
+    saveProduct(event: MatTabChangeEvent) {
         this.productForm.value.image = this.image;
         this.product = this.productForm.value;
         console.log(this.product);
-        this.productService.saveProduct(this.product).subscribe(
-            resp => {
-                console.log("Save Product Successfully!"),
-                this.prodComponent.ngOnInit();
-            },
-            (errMsg: HttpErrorResponse) => {
-                console.log("Save Product Fail!")
-            }
-        )
+        if (this.productForm.valid) {
+            this.productService.saveProduct(this.product).subscribe(
+                resp => {
+                    this.imageUrl = "./../../assets/img/image.png";
+                    alert("Thêm mới sản phẩm " + this.product.productName)
+                    this.prodComponent.ngOnInit();
+                    this.productForm.reset();
+                },
+                (errMsg: HttpErrorResponse) => {
+                    alert("Tên sản phẩm đã có")
+                }
+            )
+        }else {
+            alert("Vui lòng nhập đầy đủ thông tin!")
+        }
 
     }
 

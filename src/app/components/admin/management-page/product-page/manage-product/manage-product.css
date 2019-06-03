@@ -40,3 +40,7 @@ td.mat-cell {
 .mat-row:hover {
     background: #f5f5f5;
 } */
+
+.mat-icon {
+    cursor: pointer;
+}

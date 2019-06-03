@@ -14,19 +14,19 @@
                 <p>
                     <mat-form-field>
                         <mat-label>Tên sản phẩm</mat-label>
-                        <input matInput formControlName="productName">
+                        <input matInput formControlName="productName" required>
                     </mat-form-field>
                 </p>
                 <p>
                     <mat-form-field style="width: 45%;">
-                        <mat-select placeholder="Mặt hàng" formControlName="productType">
+                        <mat-select placeholder="Mặt hàng" formControlName="productType" required>
                             <mat-option *ngFor="let category of productTypes" [value]="category">
                                 {{category.productType}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
                     <mat-form-field style="width: 45%; margin-left: 10%">
-                        <mat-select placeholder="Thương hiệu" formControlName="tradeMark">
+                        <mat-select placeholder="Thương hiệu" formControlName="tradeMark" required>
                             <mat-option *ngFor="let trademark of tradeMarks" [value]="trademark">
                                 {{trademark.tradeMark}}
                             </mat-option>
@@ -50,18 +50,43 @@
                     </mat-form-field>
                 </p>
                 <p>
-                    <mat-form-field style="width: 45%; margin-left: 10%">
+                    <mat-form-field style="width: 45%;">
                         <mat-label>Đơn giá (VND)</mat-label>
-                        <input matInput type="number" formControlName="unitPrice">
+                        <input matInput type="number" formControlName="unitPrice" required>
+                    </mat-form-field>
+                    <mat-form-field style="width: 45%; margin-left: 10%">
+                        <mat-label>Khối lượng tịnh</mat-label>
+                        <input matInput type="number" formControlName="net">
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field style="width: 45%;">
+                        <mat-label>Ngày sản xuất</mat-label>
+                        <input matInput [matDatepicker]="picker1" formControlName="manufDate" enabled = true>
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field style="width: 45%; margin-left: 10%">
+                        <mat-label>Hạn sử dụng</mat-label>
+                        <input matInput formControlName="expiryDate" [matDatepicker]="picker2">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
                     </mat-form-field>
                 </p>
             </div>
         </form>
         <form [formGroup]="productForm">
-            <mat-form-field style="height: 200px;">
+            <mat-form-field style="height: 50px;">
                 <mat-label>Mô tả</mat-label>
-                <textarea matInput placeholder="Mô tả ..." style="height: 200px;" formControlName="description"></textarea>
-
+                <textarea matInput placeholder="Mô tả ..." style="height: 50px;" formControlName="description" required></textarea>
+            </mat-form-field>
+            <mat-form-field style="height: 50px; padding-top: 20px">
+                <mat-label>Hướng dẫn bảo quản</mat-label>
+                <textarea matInput placeholder="Hướng dẫn bảo quản ..." style="height: 50px;" formControlName="preservation"></textarea>
+            </mat-form-field>
+            <mat-form-field style="height: 50px;padding-top: 20px">
+                <mat-label>Thành phần</mat-label>
+                <textarea matInput placeholder="Thành phần ..." style="height: 50px;" formControlName="ingredient"></textarea>
             </mat-form-field>
         </form>
         <p>

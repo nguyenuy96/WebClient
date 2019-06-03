@@ -17,10 +17,11 @@
                 <button mat-button style="width: 100%; color: black; text-align: left" [routerLink]="[{outlets: {admin: ['product']}}]">
                     Sản phẩm
                 </button>
-                <button mat-button style="width: 100%; color: black; text-align: left" routerLink="/product" routerLinkActive="active">
+                <button mat-button style="width: 100%; color: black; text-align: left" routerLink="/product"
+                    routerLinkActive="active">
                     Loại sản phẩm
                 </button>
-                <button mat-button style="width: 100%; color: black; text-align: left" routerLink="/product" routerLinkActive="active">
+                <button mat-button style="width: 100%; color: black; text-align: left" [routerLink]="[{outlets: {admin: ['trademark']}}]">
                     Thương hiệu
                 </button>
             </mat-expansion-panel>
@@ -33,7 +34,8 @@
                 <button mat-button style="width: 100%; color: black; text-align: left" [routerLink]="[{outlets: {admin: ['account']}}]">
                     Tài khoản
                 </button>
-                <button mat-button style="width: 100%; color: black; text-align: left" routerLink="/product" routerLinkActive="active">
+                <button mat-button style="width: 100%; color: black; text-align: left" routerLink="/product"
+                    routerLinkActive="active">
                     Phân quyền
                 </button>
             </mat-expansion-panel>
@@ -43,19 +45,18 @@
                         Quản lý đơn hàng
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <button mat-button style="width: 100%; color: black; text-align: left" routerLink="/product" routerLinkActive="active">
-                    Đơn hàng
+                <button mat-button style="width: 100%; color: black; text-align: left" [routerLink]="[{outlets: {admin: ['waiting-order']}}]">
+                    Chờ duyệt
                 </button>
-                <button mat-button style="width: 100%; color: black; text-align: left" routerLink="/account" routerLinkActive="active">
-                    Tình trạng đơn hàng
+                <button mat-button style="width: 100%; color: black; text-align: left" [routerLink]="[{outlets: {admin: ['approved-order']}}]">
+                    Đã duyệt
                 </button>
-                <button mat-button style="width: 100%; color: black; text-align: left" routerLink="/product" routerLinkActive="active">
+                <button mat-button style="width: 100%; color: black; text-align: left" routerLink="/product"
+                    routerLinkActive="active">
                     Giao dịch
                 </button>
             </mat-expansion-panel>
 
-        </div>
-        <div style="height: 20%;bottom: 0;background: blue">
         </div>
     </div>
 

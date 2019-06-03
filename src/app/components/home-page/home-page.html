@@ -1,7 +1,7 @@
 <div>
     <div class="navbar mat-elevation-z8">
         <a routerLink="" routerLinkActive="active">
-            <h1>Baby & Mom</h1>
+            <h1>Mom & Baby</h1>
         </a>
         <mat-form-field class="example-form-field">
             <input matInput type="text" class="toolbar-search" [(ngModel)]="value">
@@ -15,14 +15,16 @@
                 </button>
             </ng-template>
         </mat-form-field>
-        <a (click) ="openCardDialog()">
-            <mat-icon style=" color: white;font-size: 3em">shopping_cart</mat-icon>
+        <a (click)="openCartDialog()" *ngIf="account === undefined || account.role.roleName === 'Customer'">
+            <mat-icon style=" color: white;font-size: 2em" matBadge="{{quantityProduct}}">shopping_cart</mat-icon>
         </a>
         <button mat-button [matMenuTriggerFor]="menu" style="margin-left: 2%; color: white;" *ngIf="account; else notLogin">
             {{account.username}}
             <mat-icon>expand_more</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="openOrderDialog()">Quản lý đơn hàng</button>
+            <mat-divider></mat-divider>
             <button mat-menu-item>Thông tin cá nhân</button>
             <mat-divider></mat-divider>
             <button mat-menu-item>Đổi mật khẩu</button>
@@ -31,11 +33,9 @@
         </mat-menu>
         <ng-template #notLogin>
             <button mat-button style="margin-left: 2%; color: white;">
-                <mat-icon style=" color: white;font-size: 1.5em">search</mat-icon>
                 Đăng ký
             </button>
             <button mat-button style="margin-left: 1%; color: white;" [routerLink]="[{outlets: {home: ['login']}}]">
-                <mat-icon style=" color: white;font-size: 1.5em">search</mat-icon>
                 Đăng nhập
             </button>
         </ng-template>

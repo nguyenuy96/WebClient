@@ -1,11 +1,11 @@
 <div mat-dialog-content style="display: flex;overflow: auto;">
     <div style="width: 70%;">
         <img src="{{imageUrl}}" style="width: 50%">
-        <h3>Đặc điểm:</h3>
-        ádfasfd
-        <h3>Hướng dẫn sử dụng:</h3>
-        <h3>Bảo quản:</h3>
-        <h3>Hạn sử dụng:</h3>
+        <h3>Đặc điểm: {{product.description}}</h3>
+        <!-- <h3>Hướng dẫn sử dụng: {{}}</h3> -->
+        <h3>Bảo quản: {{product.preservation}}</h3>
+        <h3>NSX: {{product.manufDate}}</h3>
+        <h3>HSD: {{product.expiryDate}}</h3>
     </div>
     <div style="width: 30%;overflow: auto;" id="scroll" [formGroup]="shoppingCartForm">
         <h2>{{product.productName}}</h2>

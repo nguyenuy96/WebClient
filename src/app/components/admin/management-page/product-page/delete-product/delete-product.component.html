@@ -1,0 +1,9 @@
+<div mat-dialog-content>
+  <h3>
+    Xóa sản phầm : {{product.productName}}
+  </h3>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click) = "onNoClick()">Trở lại</button>
+  <button mat-button [mat-dialog-close] (click)="deleteProduct()">Xác nhận</button>
+</div>

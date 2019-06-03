@@ -1,10 +1,10 @@
 export interface Role {
-    id: number;
+    roleId: number;
     roleName: string;
     searchName: string;
 }
 export interface Account {
-    id: number;
+    accountId: number;
     username: string;
     password: string;
     role: Role;
@@ -14,14 +14,14 @@ export interface Account {
 
 
 export interface Customer {
-    id: number;
+    customerId: number;
     name: string;
     phoneNumber: string;
     address: string;
 }
 
 export interface Employee {
-    id: number;
+    employeeId: number;
     name: string;
     phoneNumber: string;
     address: string;
@@ -115,6 +115,32 @@ export interface ProductDisplay {
 }
 
 export interface ShoppingCart {
-    productId:number;
+    cartDetailId:CartDetailId;
     amount:number;
+}
+export interface Cart {
+    cartId:number;
+    lastUpdateDate:string;
+}
+export interface CartDetailId {
+    cart: Cart;
+    product: Product;
+}
+
+export interface Order {
+    orderId:number;
+    payments: string;
+    isPay: boolean;
+    isDelivery: boolean;
+    addressDelivery: string;
+    phoneDelivery: string;
+    orderState: string;
+    customer: Customer;
+    employee: Employee;
+    cart: Cart;
+}
+
+export interface ExportRec {
+    warehouse: Warehouse;
+    employee: Employee;
 }
